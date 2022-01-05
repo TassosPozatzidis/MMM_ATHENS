@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const cors = require("cors")({origin: true});
 admin.initializeApp();
 
 // const cors = require('cors')({
@@ -30,4 +31,16 @@ exports.toHome=functions.https.onRequest((request, response)=>{
 // http callable function
 exports.sayHello = functions.https.onCall((data, context)=>{
   return "hello, all";
+});
+
+exports.fn = functions.https.onRequest((req, res) => {
+  cors(req, res, () => {
+    res.status(200).send({test: "Testing functions"});
+  });
+});
+
+exports.addMessage = functions.https.onRequest((req, res) => {
+  cors()(req, res, () => {
+    return res.json({status: 'ok'});
+  });
 });
