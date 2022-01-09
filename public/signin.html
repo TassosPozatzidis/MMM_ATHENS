@@ -41,7 +41,8 @@
                         <li class="nav-item"><a class="nav-link"  href="generic.html">Αρχική</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.hmtl">Σχετικά</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="contact.html">Επικοινωνία</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="signup.html">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link active" >Log In</a></li>
                     </ul>
                 </div>
             </div>
@@ -144,7 +145,23 @@
           /**
            * Handles the sign in button press.
            */
+          function getUser(){
+            const user = firebase.auth().currentUser;
+            if (user !== null) {
+            // The user object has basic properties such as display name, email, etc.
+            const displayName = user.displayName;
+            const email = user.email;
+
+
+            // The user's ID, unique to the Firebase project. Do NOT use
+            // this value to authenticate with your backend server, if
+            // you have one. Use User.getToken() instead.
+            const uid = user.uid;
+            console.log(user);
+            }
+          }
           function toggleSignIn() {
+            const user = firebase.auth().currentUser;
             if (firebase.auth().currentUser) {
               firebase.auth().signOut();
             } else {
@@ -173,8 +190,9 @@
               });
             }
             document.getElementById('quickstart-sign-in').disabled = true;
-            window.location = "tickets.html";
-            var displayName = user.displayName;
+            console.log(user);
+            //window.location = "tickets.html";
+            
           }
       
           /**
@@ -216,7 +234,20 @@
               alert('Email Verification Sent!');
             });
           }
-      
+          function signOut(){
+            firebase.auth().signOut().then(() => {
+                              // Sign-out successful.
+                              console.log(user);
+                // User is signed out.
+                document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+                document.getElementById('quickstart-sign-in').textContent = 'Sign in';
+                document.getElementById('quickstart-account-details').textContent = 'null';
+
+              }).catch((error) => {
+                console.log(error);
+                              // An error happened.
+              });
+          }
           function sendPasswordReset() {
             var email = document.getElementById('email').value;
             firebase.auth().sendPasswordResetEmail(email).then(function() {
@@ -240,12 +271,13 @@
            *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
            *    out, and that is where we update the UI.
            */
+
           function initApp() {
             // Listening for auth state changes.
             firebase.auth().onAuthStateChanged(function(user) {
-              document.getElementById('quickstart-verify-email').disabled = true;
               if (user) {
                 // User is signed in.
+                console.log(user);
                 var displayName = user.displayName;
                 var email = user.email;
                 var emailVerified = user.emailVerified;
@@ -256,10 +288,12 @@
                 document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
                 document.getElementById('quickstart-sign-in').textContent = 'Sign out';
                 document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+                window.location = "tickets.html";
                 if (!emailVerified) {
-                  document.getElementById('quickstart-verify-email').disabled = false;
+                 console.log(user);
                 }
               } else {
+                console.log(user);
                 // User is signed out.
                 document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
                 document.getElementById('quickstart-sign-in').textContent = 'Sign in';
@@ -267,10 +301,9 @@
               }
               document.getElementById('quickstart-sign-in').disabled = false;
             });
-      
+            
             document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
-            document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);
-            document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
+
             document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
           }
       

@@ -3,9 +3,9 @@ const admin = require("firebase-admin");
 const cors = require("cors")({origin: true});
 admin.initializeApp();
 
-// const cors = require('cors')({
-// origin: true,
-// });
+ const cors = require('cors')({
+ origin: true,
+ });
 
 // http request 1
 exports.randomNumber=functions.https.onRequest((request, response)=>{
@@ -39,8 +39,3 @@ exports.fn = functions.https.onRequest((req, res) => {
   });
 });
 
-exports.addMessage = functions.https.onRequest((req, res) => {
-  cors()(req, res, () => {
-    return res.json({status: 'ok'});
-  });
-});

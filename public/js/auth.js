@@ -1,3 +1,7 @@
+//authentication
+auth().onAuthStateChanged( user => {
+  console.log(user);
+})
 // signup
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit',(e) => {
