@@ -72,7 +72,7 @@
                                     Ο χρόνος ισχύος του ενιαίου εισιτηρίου είναι 90 λεπτά από την πρώτη επικύρωσή του.</p>
                                 <p class="mb-0"><strong>Κόστος:1,20&euro;</strong></p>
 
-                              </br><a class="btn btn-primary btn-lg" id="eniaio" name="eniaio" href="ticketqrcode.html">Έκδοση</a>
+                              </br><a class="btn btn-primary btn-lg" id="eniaio" name="eniaio" onclick="downloadFile('Simple.pdf')">Έκδοση</a>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                                     Ισχύει για 24 ώρες από την πρώτη επικύρωσή του.
                                     Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, και στο Μετρό στο τμήμα Κορωπί-Αεροδρόμιο.</p>
                                     <p class="mb-0"><strong>Κόστος:4,10&euro;</strong></p>
-                              </br><a class="btn btn-primary btn-lg" id="daily" name="daily" href="ticketqrcode.html">Έκδοση</a>
+                              </br><a class="btn btn-primary btn-lg" id="daily" name="daily" onclick="downloadFile('OneDay.pdf')">Έκδοση</a>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                                 <p class="mb-0">Το 3ημερο τουριστικό εισιτήριο ισχύει για 3 πλήρη 24ωρα από την πρώτη επικύρωσή του, σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ:
                                      Λεωφορεία, Τρόλεϊ, Τραμ, Ηλεκτρικό Σιδηρόδρομο, Μετρό (μέχρι Κορωπί) και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Κορωπί). Επίσης περιλαμβάνει μια διαδρομή από και μια προς τον Διεθνή Αερολιμένα Αθηνών με το Μετρό ή τις αντίστοιχες λεωφορειακές γραμμές EXPRESS. Το εισιτήριο αυτό ισχύει και στη λεωφορειακή γραμμή Χ80.</p>
                                      <p class="mb-0"><strong>Κόστος:20,00&euro;</strong></p>
-                                    </br><a class="btn btn-primary btn-lg" id="tour" name="tour" href="ticketqrcode.html">Έκδοση</a>
+                                    </br><a class="btn btn-primary btn-lg" id="tour" name="tour" onclick="downloadFile('Tourist.pdf')">Έκδοση</a>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                                 <h2 class="fs-4 fw-bold"> Λεωφοριακές γραμμές EXPRESS</h2>
                                 <p class="mb-0">Τα εισιτήρια για τις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου ισχύουν για μία μόνο διαδρομή, από ή προς το Αεροδρόμιο.</p>
                                 <p class="mb-0"><strong>Κόστος:5,50&euro;</strong></p>
-                            </br><a class="btn btn-primary btn-lg" id="express" name="express" onclick="downloadFile()" >Έκδοση</a>
+                            </br><a class="btn btn-primary btn-lg" id="express" name="express" onclick="downloadFile('Express.pdf')" >Έκδοση</a>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                                 <h2 class="fs-4 fw-bold"> Eισιτήριο μετρό αεροδρομίου</h2>
                                 <p class="mb-0">Τα εισιτήρια Αεροδρομίου του Μετρό ισχύουν σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ για 90 λεπτά από την πρώτη επικύρωσή τους σε πύλη σταθμού του μετρό ή σε επικυρωτικό μηχάνημα στα Λεωφορεία, Τρόλεϊ, Τραμ.</p>
                                 <p class="mb-0"><strong>Κόστος:9,00&euro;</strong></p>
-                            </br><a class="btn btn-primary btn-lg" id="aerport1" name="aerport1" href="ticketqrcode.html">Έκδοση</a>
+                            </br><a class="btn btn-primary btn-lg" id="aerport1" name="aerport1" onclick="downloadFile('AirportOne.pdf')">Έκδοση</a>
                             </div>
                         </div>
                     </div>
@@ -137,21 +137,11 @@
                                     Ισχύουν επίσης και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Αεροδρόμιο).
                                     Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80.</p>
                                 <p class="mb-0"><strong>Κόστος:5,50&euro;</strong></p>
-                              </br><a class="btn btn-primary btn-lg" id="aerport2" name="aerport2" href="ticketqrcode.html">Έκδοση</a>
+                              </br><a class="btn btn-primary btn-lg" id="aerport2" name="aerport2" onclick="downloadFile('Airport.pdf')">Έκδοση</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                              </br><a class="btn btn-primary btn-lg" id="myimg" name="myimg" ></a>
-                              <button id='woh' onclick="initApp2()">
-                                  Pipi
-                              </button>
-                            </div>
-                        </div>
-                    </div>
+
 
 
                     
@@ -175,11 +165,11 @@
         listenForFiles();
         listenUser();
     });
-        function downloadFile(){
+        function downloadFile(FileN){
 
             var storage = firebase.storage();
-            var pathReference = storage.ref('tickets/Express.pdf');
-                    firebase.storage().ref().child('tickets/Express.pdf').getDownloadURL()
+            var pathReference = storage.ref('tickets/'+FileN);
+                    firebase.storage().ref().child('tickets/'+FileN).getDownloadURL()
   .then((url) => {
     // This can be downloaded directly:
     var xhr = new XMLHttpRequest();
