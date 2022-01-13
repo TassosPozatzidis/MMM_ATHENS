@@ -5,13 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Qr code εισιτηρίου</title>
+        <title>Επιτυχής Συναλλαγή</title>
+        <!-- Favicon-->
+        <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
+        <!-- include only the Firebase features as you need -->
+        <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
+        <script defer src="/__/firebase/init.js?useEmulator=true"></script>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
+        <script src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
+        <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
+        <script src="/__/firebase/init.js"></script>
+
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -21,9 +38,19 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link"  href="generic.hmtl">Αρχική</a></li>
-                        <li class="nav-item"><a class="nav-link"  href="about.hmtl">Σχετικά</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="generic.html">Αρχική</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="about.html">Σχετικά</a></li>
                         <li class="nav-item"><a class="nav-link"  href="contact.html">Επικοινωνία</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="account-details" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Ο Λογαριασμός μου
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="account-details">
+                              <li><a class="dropdown-item" href="#">Ειδική Κατηγορία</a></li>
+                              <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
+                            
+                            </ul>
+                          </li>
                     </ul>
                 </div>
             </div>
@@ -34,6 +61,7 @@
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
                         <h1 class="display-5 fw-bold">Το εισιτήριο σας εκδόθηκε με επιτυχία.</h1>
                         <p class="fs-4">Αποθηκεύστε το στην συσκευή σας. Εύκολη χρήση του εισιτηρίου ανά πάσα στιγμή.</p>
+                        <p>Επιστροφή στην  <a href="tickets2.html">έκδοση εισιτηρίου</a>.</p>
                         <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
                 </div>
             </div>
@@ -45,12 +73,218 @@
 
     </section>
     <!-- Footer-->
+    <div class="fixed-bottom">
     <footer class="py-5 bg-dark">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
     </footer>
+</div>
     <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+    </script>
     <!-- Core theme JS-->
     <script src="/js/scripts.css"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+        listenForChanges();
+        listenForFiles();
+        listenUser();
+    });
+        function downloadFile(FileN){
+    
+            var storage = firebase.storage();
+            var pathReference = storage.ref('tickets/'+FileN);
+                    firebase.storage().ref().child('tickets/'+FileN).getDownloadURL()
+    .then((url) => {
+    // This can be downloaded directly:
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = (event) => {
+      var blob = xhr.response;
+    };
+    xhr.open('GET', url);
+    xhr.send();
+    window.open(url, '_blank').focus();
+    
+    // Or inserted into an <img> element
+    
+    })
+    .catch((error) => {
+    switch (error.code) {
+    case 'storage/object-not-found':
+      // File doesn't exist
+      break;
+    case 'storage/unauthorized':
+      // User doesn't have permission to access the object
+      break;
+    case 'storage/canceled':
+      // User canceled the upload
+      break;
+    
+    // ...
+    
+    case 'storage/unknown':
+      // Unknown error occurred, inspect the server response
+      break;
+    }
+    // Handle any errors
+    });
+    }
+    function listenUser(){
+    //   firebase.auth().onAuthStateChanged(user => {
+    //       console.log(user);
+    //       
+    //   })
+    
+    firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+    const { currentUser } = firebaseApp.auth();
+    console.log('Currently logged in user', currentUser);
+    store.dispatch(userLoggedIn(currentUser.uid));
+    browserHistory.push('/newsfeed');
+    // save the current user's uid to redux store.
+    } else {
+    browserHistory.push('/signin');
+    // delete the current user's uid from the redux store.
+    }
+    })
+    
+    }
+    function getUser(){
+      
+            const user = firebase.auth().currentUser;
+            if (user !== null) {
+            // The user object has basic properties such as display name, email, etc.
+            const displayName = user.displayName;
+            const email = user.email;
+    
+    
+            // The user's ID, unique to the Firebase project. Do NOT use
+            // this value to authenticate with your backend server, if
+            // you have one. Use User.getToken() instead.
+            const uid = user.uid;
+            console.log(user);
+            document.getElementById('account-details').innerHTML = email;
+            }
+          }
+    
+    function initApp2() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        console.log(user);
+        
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var uid = user.uid;
+        var phoneNumber = user.phoneNumber;
+        var providerData = user.providerData;
+        document.getElementById('account-details').innerHTML = email;
+        user.getIdToken().then(function(accessToken) {
+          document.getElementById('sign-in-status').textContent = 'Signed in';
+          document.getElementById('sign-in').textContent = 'Sign out';
+          document.getElementById('account-details').textContent = JSON.stringify({
+            email: email,
+            uid: uid
+          }, null, '  ');
+        });
+      } else {
+        // User is signed out.
+        console.log(user);
+        window.location="generic.html";
+    
+      }
+    }, function(error) {
+      console.log(error);
+    });
+    };
+    
+    window.addEventListener('load', function() {
+    initApp2()
+    });
+    function initApp() {
+              // Listening for auth state changes.
+              firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                  // User is signed in.
+                  var displayName = user.displayName;
+                  var email = user.email;
+                  var emailVerified = user.emailVerified;
+                  var uid = user.uid;
+                  var providerData = user.providerData;
+                    console.log(user);
+                  document.getElementById('').textContent =email;
+                  if (!emailVerified) {
+                    document.getElementById('quickstart-verify-email').disabled = false;
+                  }
+                } else {
+                  // User is signed out.
+    
+                }
+    
+              });
+        
+    
+            }
+            function signOut(){
+                    if (confirm("You are Going to Log Out")) {
+    
+                            firebase.auth().signOut().then(() => {
+                              // Sign-out successful.
+                                            console.log(user);
+                                            document.getElementById('').textContent =email;
+                // User is signed out.
+                                }).catch((error) => {
+                                    console.log(error);
+                                                // An error happened.
+                                });
+              
+                    } else {
+                        txt = "You pressed Cancel!";
+                }
+          }
+        function uploadFile() {
+        let file = document.getElementById("filename").files[0];
+        console.log("Filename: " + file.name + " size:" + file.size + " type:" + file.type);
+        let metadata = {contentType: file.type};
+        let uploadTask = firebase.storage().ref().child('documents/' + file.name).put(file, metadata);
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+            function (snapshot) {
+                let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                document.getElementById("files").innerHTML = 'Upload is ' + progress + '% done';
+            },
+            function (error) {
+                console.log(error)
+            },
+            function () {
+                uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    console.log('File available at', downloadURL);
+                });
+            });
+    }
+    
+    function listenForFiles() {
+        firebase.firestore().collection("images")
+            .orderBy("updated", "desc")
+            .limit(3)
+            .onSnapshot(function (querySnapshot) {
+                let files = [];
+                querySnapshot.forEach(function (doc) {
+                    let file = doc.data();
+                    // https://www.googleapis.com/download/storage/v1/b/unipi-aps.appspot.com/o/images%2FuNIPI.jpg?generation=1610549348125433&alt=media
+                    // https://firebasestorage.googleapis.com/v0/b/unipi-aps.appspot.com/o/images%2FuNIPI.jpg?alt=media&token=c1a62660-cf1c-4e4f-a8fa-a0baf075d773
+                    let url = file.mediaLink.replace(
+                        'https://www.googleapis.com/download/storage/v1',
+                        'https://firebasestorage.googleapis.com/v0');
+                    let html = `<img src='${url}'/><br>${file.name}`
+                    files.push(html);
+                });
+                document.getElementById("files").innerHTML = files.join("<br>");
+            });
+    }
+    </script>
 </body>
 </html>

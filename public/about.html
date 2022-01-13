@@ -5,25 +5,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Heroic Features - Start Bootstrap Template</title>
+        <title>ATH.ENA Ticket</title>
         <!-- Favicon-->
+            <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
         <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="styles.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
-                <a class="navbar-brand" href="generic">ΑΤΗ.ΕΝΑ ticket</a>
+                <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="generic">Αρχική</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="about">Σχετικά</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact">Επικοινωνία</a></li>
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="generic.html">Αρχική</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="about.html">Σχετικά</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
+                        <li class="nav-item"><a class="nav-link" href="signin.html">Είσοδος</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,8 +48,8 @@
             <div class="container px-lg-5">
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
                     <div class="m-4 m-lg-5">
-                        <h1 class="display-5 fw-bold">Καλωσορίσατε!</h1>
-                        <p class="fs-4">Mε ένα κλικ επιλέγετε το εισιτήριο που επιθυμείτε .Μπορείτε να μάθετε όλες τις πληροφορίες και να αγοράσετε το εισητήριο σας.</p>
+                        <h1 class="display-5 fw-bold">Σχετικά</h1>
+                        <p class="fs-4">Για να μην λέτε οτι έχει πρόβλημα το σαιτ μας.....</p>
                         <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
                     </div>
                 </div>
@@ -46,70 +61,33 @@
                 <!-- Page Features-->
                 <div class="row gx-lg-5">
                     <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
-                                <h2 class="fs-4 fw-bold">Εκδοση εισιτηρίου</h2>
-                                <p class="mb-0">Με αυτήν την επιλογή, μπορείτε να εκδόσετε εισητήριο</p>
-                              </br><a class="btn btn-primary btn-lg" href="#!">Έκδοση</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <!-- <div class="card bg-light border-0 h-100">
-                           <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"></div>
 
-                            </div>
-                        </div> -->
                     </div>
                     <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                                <h2 class="fs-4 fw-bold">Προσωποποιημένο εισιτήριο</h2>
-                                <p class="mb-0">Με αυτήν την επιλογή, μπορείτε να εκδόσετε εισιτήριο πολλαπλών διαδρομών</p>
-                                </br><a class="btn btn-primary btn-lg" href="#!">Έκδοση</a>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="col-lg-6 col-xxl-4 mb-5">
-                      <!--  <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-bootstrap"></i></div>
-                                <h2 class="fs-4 fw-bold">Feature boxes</h2>
-                                <p class="mb-0">We've created some custom feature boxes using Bootstrap icons!</p>
-                            </div>
-                        </div>-->
-                    </div>
-                     <div class="col-lg-6 col-xxl-4 mb-5">
-                    <!--    <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-code"></i></div>
-                                <h2 class="fs-4 fw-bold">Simple clean code</h2>
-                                <p class="mb-0">We keep our dependencies up to date and squash bugs as they come!</p>
-                            </div>
-                        </div>-->
+ 
                     </div>
                     <div class="col-lg-6 col-xxl-4 mb-5">
-                    <!--       <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-patch-check"></i></div>
-                                <h2 class="fs-4 fw-bold">A name you trust</h2>
-                                <p class="mb-0">Start Bootstrap has been the leader in free Bootstrap templates since 2013!</p>
-                            </div>
-                        </div>
-                    </div>-->
+
+                    </div>
+                   
+                    
                 </div>
             </div>
+
         </section>
         <!-- Footer-->
+        <div class="fixed-bottom">
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
         </footer>
+    </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="{{ asset("/js/scripts.css")}}"></script>
+        <script src="/__/firebase/9.23.1/firebase-app.js"></script>
+        <script src="/__/firebase/9.23.1/firebase-auth.js"></script>
+        <script src="/__/firebase/9.23.1/firebase-functions.js"></script>
+        <script src="/__/firebase/9.23.1/init.js"></script>
+        <script src="/js/scripts.css"></script>
     </body>
 </html>
