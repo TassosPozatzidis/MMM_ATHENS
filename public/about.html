@@ -50,7 +50,21 @@
                     <div class="m-4 m-lg-5">
                         <h1 class="display-5 fw-bold">Σχετικά</h1>
                         <p class="fs-4">Για να μην λέτε οτι έχει πρόβλημα το σαιτ μας.....</p>
-                        <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
+                    </br><a class="btn btn-primary btn-lg" id="Admin" onclick="getPendingApplications()" >Make me Admin</a>
+                    <table class="fs-4">
+                        <thead>
+                            <tr>
+                                <th>userId</th>
+                                <th>firstname</th>
+                                <th>lastname</th>
+                                <th>status</th>
+                                <th>role</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        </tbody>
+                    </table>    
+                    <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
                     </div>
                 </div>
             </div>
@@ -89,5 +103,29 @@
         <script src="/__/firebase/9.23.1/firebase-functions.js"></script>
         <script src="/__/firebase/9.23.1/init.js"></script>
         <script src="/js/scripts.css"></script>
+        <script>
+            function getPendingApplications() {
+                firebase.firestore().collection("Applications").where("status", "==", "pending")
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            let data = doc.data();
+            let row = `<tr>
+                            <td>${data.userID}</td>
+                            <td>${data.lastname}</td>
+                            <td>${data.firstname}</td>
+                            <td>${data.status}</td>
+                            <td>${data.role}</td>
+                        </tr>`;
+            let table = document.getElementById('myTable');
+            table.innerHTML +=row
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+            }
+        </script>
     </body>
 </html>

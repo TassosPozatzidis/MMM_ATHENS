@@ -1,3 +1,14 @@
+
+const adminForm = document.querySelector('#Admin');
+adminForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const adminuser = firebase.auth().currentUser;
+  const addAdminRole = functions.httpsCallable('AddAdminRole');
+  addAdminRole({ user: adminuser }).then(result => {
+    console.log(result);
+  });
+});
+
 //authentication
 auth().onAuthStateChanged( user => {
   console.log(user);

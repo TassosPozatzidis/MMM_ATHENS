@@ -6,18 +6,36 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Φόρμα ειδικής κατηγορίας</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="styles.css" rel="stylesheet" />
+       <!-- Favicon-->
+       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+       <!--Import bootstrap js so i can make popovers-->
+       <script src=”https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js” integrity=”sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ” crossorigin=”anonymous”></script>
+
+       <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
+       <!-- include only the Firebase features as you need -->
+       <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
+       <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+       <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+       <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
+       <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
+       <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
+       <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
+       <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
+       <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
+       <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+       <!-- Favicon-->
+       <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
+       <!-- Bootstrap icons-->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+       <!-- Core theme CSS (includes Bootstrap)-->
+       <link href="styles.css" rel="stylesheet" />
 
         <!--Import poppers before js as need it-->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-        <!--Import bootstrap js so i can make popovers-->
-        <script src=”https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js” integrity=”sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ” crossorigin=”anonymous”></script>
+        <script src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
+        <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
+        <script src="/__/firebase/init.js"></script>
+    
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -27,7 +45,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link"  href="generic.hmtl">Αρχική</a></li>
+                        <li class="nav-item"><a class="nav-link"  href="generic.html">Αρχική</a></li>
                         <li class="nav-item"><a class="nav-link"  href="about.html">Σχετικά</a></li>
                         <li class="nav-item"><a class="nav-link"  href="contact.html">Επικοινωνία</a></li>
                         <li class="nav-item dropdown">
@@ -35,11 +53,11 @@
                               Ο Λογαριασμός μου
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <li><a class="dropdown-item" href="#">Αγορά εισιτηρίων</a></li>
-                              <li><a class="dropdown-item" href="generic.html">Αποσύνδεση</a></li>
+                              <li><a class="dropdown-item" href="formspecial.html">Ειδική Κατηγορία</a></li>
+                              <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
                             
                             </ul>
-                          </li>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -57,13 +75,13 @@
                         </p>
                         <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
                         <p class="fs-5">Οι κατηγορίες που δικαιούνται εισιτήριο μειωμένου κομίστρου είναι: 
-                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και φοιτητικού πάσο ή βεβαίωση σπουδών.">Φοιτητές Τριτοβάθμιας Εκπαίδευσης</p>
-                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και φοιτητικού πάσο ή βεβαίωση σπουδών.">Φοιτητές Σχολών Τριτοβάθμιας Εκπαίδευσης ή Πανεπιστημίων της Αλλοδαπής εώς την ηλικία των 25 ετών</p>
-                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και δελτίο ειδικού κομίστρου."> Σπουδαστές Δημόσιων Ι.Ε.Κ.</p>
-                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και δελτίο μαθητικού κομίστρου.">Μαθητές Πρωτοβάθμιας & Δευτεροβάθμιας Εκπαίδευσης άνω των 18 ετών</p>
-                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και το πίσω μέρος του βιβλιαρίου πολυτέκνων θεωρημένο.">Πολύτεκνοι και Μέλη των οικογενειών τους</p>
-                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπία ταυτότητας.">Νεόι από 13 έως 18 ετών</p>
-                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπία ταυτότητας.">Άτομα ηλικίας άνω των 65 χρόνων</p>
+                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και φοιτητικού πάσο ή βεβαίωση σπουδών.">1. Φοιτητές Τριτοβάθμιας Εκπαίδευσης</p>
+                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και φοιτητικού πάσο ή βεβαίωση σπουδών.">2. Φοιτητές Σχολών Τριτοβάθμιας Εκπαίδευσης ή Πανεπιστημίων της Αλλοδαπής εώς την ηλικία των 25 ετών</p>
+                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και δελτίο ειδικού κομίστρου.">3. Σπουδαστές Δημόσιων Ι.Ε.Κ.</p>
+                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και δελτίο μαθητικού κομίστρου.">4. Μαθητές Πρωτοβάθμιας & Δευτεροβάθμιας Εκπαίδευσης άνω των 18 ετών</p>
+                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπίες ταυτότητας και το πίσω μέρος του βιβλιαρίου πολυτέκνων θεωρημένο.">5. Πολύτεκνοι και Μέλη των οικογενειών τους</p>
+                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπία ταυτότητας.">6. Νεόι από 13 έως 18 ετών</p>
+                            <p class="text-decoration-underline" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Απαραίτητα δικαιολογητικά: φωτοτυπία ταυτότητας.">7. Άτομα ηλικίας άνω των 65 χρόνων</p>
                             
                         </p>
                 </div>
@@ -74,40 +92,41 @@
         <header class="py-3">
             <div class="container px-lg-5 col-lg-6">
                 <div class="bg-light text-center">
-                    <h1>Φόρμα Ένταξης Ειδικής Κατηγορίας</h1>
+                    <h1>Φόρμα Ένταξης Ειδικής Κατηγορίας</h1></br>
+                    <label for="category">Επιλογή Ειδικής Κατηγορίας:</label>
+                    <select class="form-control" name="category" id="category">
+                        <option value="1">Επιλογή 1</option>
+                        <option value="2">Επιλογή 2</option>
+                        <option value="3">Επιλογή 3</option>
+                        <option value="4">Επιλογή 4</option>
+                        <option value="5">Επιλογή 5</option>
+                        <option value="6">Επιλογή 6</option>
+                        <option value="7">Επιλογή 7</option>
+                      </select>
                     <div class="form-group">
                         <label for="name">Όνομα:</label>
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="name" required>
                     </div>
-                    <div class="form-group">
-                        <label for="sirname">Επώνυμο:</label>
-                        <input type="text" class="form-control" id="sirname">
+                    <div class="form-group" required>
+                        <label for="surname">Επώνυμο:</label>
+                        <input type="text" class="form-control" id="surname" >
                     </div>
                     <div>
                         <label for="formFileLg" class="form-label">Φωτοτυπίες αστυνομικής ταυτότητας</label>
-                        <input class="form-control form-control-lg" id="policeid" type="file">
+                        <input class="form-control form-control-lg" id="filename1" type="file" required>
                       </div>
                       <div>
                         <label for="formFileLg" class="form-label">Δικαιολογητικό ειδικής κατηγορίας</label>
-                        <input class="form-control form-control-lg" id="formFileLg" type="file">
+                        <input class="form-control form-control-lg" id="filename2" type="file" required>
                       </div>
+                      <div><label for="formFileLg" class="form-label" id="files"></label></div>
+                    </br><a class="btn btn-primary btn-lg" id="Upload" onclick="uploadFile();addData();" >Επιβεβαίωση</a>
+                </br><a class="btn btn-primary btn-lg" id="Admin" onclick="addAdmin()" >Make me Admin</a>
                     </div>
+                
                 </div>   
             </div>
         </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -139,9 +158,180 @@
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
         </footer>
+                <!-- Bootstrap core JS-->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+                <!-- Core theme JS-->
+                <script src="/js/scripts.css"></script>
+         
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    listenForChanges();
+    listenForFiles();
+});
+
+    function addAdmin(){
+        let user  = firebase.auth().currentUser;
+        //let addAdminR=firebase.functions().httpsCallable("addAdminRole");
+        firebase.auth()
+  .getUser(user.uid)
+  .then((userRecord) => {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
+    return getAuth().setCustomUserClaims(user.uid, {
+        admin: true,
+      });
+  })
+  .catch((error) => {
+    console.log('Error fetching user data:', error);
+  });
+    }
+    function addData() {//add a new Document to Collection Applications
+        let user  = firebase.auth().currentUser;
+        let firstname = document.getElementById("name").value;          //document attribute firstname
+        let lastname = document.getElementById("surname").value;
+        let filename1 = document.getElementById("filename1").value;
+        let filename2 = document.getElementById("filename2").value;
+        let category = document.getElementById("category").value;
+            if (firstname.length < 1) {
+              alert('Please enter a name.');
+              return;
+            }
+            if (lastname.length < 1) {
+              alert('Please enter a surname.');
+              return;
+            }
+            if (document.getElementById("filename1").files.length == 0 ) {
+              alert('Please insert a file (1).');
+              return;
+            }
+            if (document.getElementById("filename2").files.length == 0 ) {
+              alert('Please insert a file (2).');
+              return;
+            }
+            if (category.length < 1) {
+              alert('Please select a category.');
+              return;
+            }
+        firebase.firestore().collection("Applications")
+            .add({
+                userID: user.uid,
+                firstname: firstname,
+                lastname: lastname,
+                category: category,
+                filename1: filename1,
+                filename2: filename2,
+                date: "1900-01-01"
+            })
+            .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
+            setTimeout(function(){ window.location.href="SuccessApplication.html" }, 3000);//wait 3000 until the function complete-then redirect to SuccessApplication page
+    }
+
+
+function initApp2() {
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+    // User is signed in.
+    console.log(user);
+    
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var uid = user.uid;
+    var phoneNumber = user.phoneNumber;
+    var providerData = user.providerData;
+    document.getElementById('navbarDropdownMenuLink').innerHTML = email;
+    user.getIdToken().then(function(accessToken) {
+      document.getElementById('sign-in-status').textContent = 'Signed in';
+      document.getElementById('sign-in').textContent = 'Sign out';
+      document.getElementById('navbarDropdownMenuLink').textContent = JSON.stringify({
+        email: email,
+        uid: uid
+      }, null, '  ');
+    });
+  } else {
+    // User is signed out.
+    console.log(user);
+    window.location="generic.html";
+
+  }
+}, function(error) {
+  console.log(error);
+});
+};
+
+window.addEventListener('load', function() {
+initApp2()
+});
+        function signOut(){
+                if (confirm("You are Going to Log Out")) {
+
+                        firebase.auth().signOut().then(() => {
+                          // Sign-out successful.
+                                        console.log(user);
+                                        document.getElementById('').textContent =email;
+            // User is signed out.
+                            }).catch((error) => {
+                                console.log(error);
+                                            // An error happened.
+                            });
+          
+                } else {
+                    txt = "You pressed Cancel!";
+            }
+      }
+
+
+
+    function uploadFile() {
+
+    let user  = firebase.auth().currentUser;
+    let file1 = document.getElementById("filename1").files[0];
+    let file2 = document.getElementById("filename2").files[0];
+    const file = [file1,file2];
+ /*   if (file1.length < 1) {
+              alert('Please insert a file.');
+              return;
+            }
+            if (file2.length < 1) {
+              alert('Please insert a file.');
+              return;
+            }*/
+    //let file = document.getElementById(filename2).files[1];
+    for (var i = 0, row; row = file[i]; i++) {
+            console.log("Filename: " + file[i].name + " size:" + file[i].size + " type:" + file[i].type);
+            let metadata = {contentType: file[i].type};
+            let uploadTask = firebase.storage().ref().child('documents/'+user.uid+'/'+ file[i].name).put(file[i], metadata);
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                function (snapshot) {
+                    let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    document.getElementById("files").innerHTML = 'Upload is ' + progress + '% done';
+                },
+                function (error) {
+                    console.log(error)
+                },
+                function () {
+                    uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                        console.log('File available at', downloadURL);
+                    });
+                });
+        }
+    }
+    
+
+</script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
+        <script src="/__/firebase/9.23.1/firebase-app.js"></script>
+        <script src="/__/firebase/9.23.1/firebase-auth.js"></script>
+        <script src="/__/firebase/9.23.1/init.js"></script>
         <script src="/js/scripts.css"></script>
+
     </body>
 </html>
