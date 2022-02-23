@@ -1,10 +1,9 @@
 
-const adminForm = document.querySelector('#Admin');
+const adminForm = document.querySelector('editbtn');
 adminForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const adminuser = firebase.auth().currentUser;
-  const addAdminRole = functions.httpsCallable('AddAdminRole');
-  addAdminRole({ user: adminuser }).then(result => {
+  const addAdminRole = functions.httpsCallable('AddAdmin');
+  addAdminRole({ uid: adminuser }).then(result => {
     console.log(result);
   });
 });
