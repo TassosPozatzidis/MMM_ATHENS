@@ -1,8 +1,8 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const cors = require("cors")({
-  origin: true,
-});
+// const cors = require("cors")({
+//   origin: true,
+// });
 
 admin.initializeApp(functions.config().firebase);
 
@@ -30,24 +30,32 @@ exports.createAdminUser = functions.https.onRequest(async (request, response) =>
   }
 });
 
-exports.createSpecialUser = functions.https.onRequest(async (request, response) => {
+exports.checkRole = functions.https.onRequest(async (request, response) => {
   try {
-    const user = await admin.auth().createUser({
-      email: "special@athenaticket.org",
-      emailVerified: true,
-      password: "special1234",
-      displayName: "special",
-      disabled: false,
-      role: "special",
-    });
-    admin.auth().setCustomUserClaims(user.uid, {
-      role: "special",
-    });
+   const user= admin.auth().getUser("n9zVQnCrV5bUk2XPwKGHGGLSc6R2");
+      response.send((await user).customClaims);
+    } catch (error) {
+      throw new functions.https.HttpsError("failed to create a user");
+    }
+});
 
-    response.send(user);
-  } catch (error) {
-    throw new functions.https.HttpsError("failed to create a user");
-  }
+exports.addSpecialRoleToUser = functions.https.onCall((data, context) => {
+  const uid = data.uid;
+  console.log(uid);
+  admin.auth().setCustomUserClaims(uid, {
+    role: "special",
+  });
+});
+
+exports.updateCollectionApplications = functions.https.onCall((data, context) => {
+  // const docid = data.doc;
+  datab.collection("Applications").doc("zkSbGzOZDA3rJzvwGW8t").update({
+    role: "special",
+    status: "active",
+    })
+    .then(function() {
+    console.log("Document successfully updated!");
+    });
 });
 
 exports.addAdminRole = functions.https.onCall((data, context) => {
@@ -66,39 +74,8 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
 });
 
 // http request 1
-exports.randomNumber = functions.https.onRequest((request, response) => {
-  const number = Math.round(Math.random() * 100);
-  console.log(number);
-  response.send(number.toString());
-});
-
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", {
-    structuredData: true,
-  });
-  response.send({
-    first_name: "Andreas",
-    last_name: "Menychtas",
-    registered: "true",
-  });
-});
-
-// http request 1
 exports.toHome = functions.https.onRequest((request, response) => {
   response.redirect("https://mmm-oasa.web.app/generic.html");
-});
-
-// http callable function
-exports.sayHello = functions.https.onCall((data, context) => {
-  return "hello, all";
-});
-
-exports.fn = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    res.status(200).send({
-      test: "Testing functions",
-    });
-  });
 });
 
 exports.getMulipleDoc = functions.https.onRequest((req, res) => {
@@ -134,16 +111,4 @@ exports.getMulipleDocs = functions.https.onRequest(async (req, res) => {
   });
   // res.json({result: `Message with ID: ${snapshot.id} .`});
   // [END firestore_data_query]
-});
-
-exports.addAdmin = functions.https.onCall((data, context) => {
-  return admin.auth().setCustomUserClaims(data, {
-    admin: true,
-  }).then(() => {
-    return {
-      message: `Success ! ${data} has been made an admin`,
-    };
-  }).catch((err) => {
-    return err;
-  });
 });

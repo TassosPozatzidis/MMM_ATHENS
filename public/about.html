@@ -7,20 +7,14 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>ATH.ENA Ticket</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-functions.js"></script>
     <!-- Favicon-->
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="styles.css" rel="stylesheet" />
 
     <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -104,31 +98,42 @@
     </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="/__/firebase/9.23.1/firebase-app.js"></script>
-    <script src="/__/firebase/9.23.1/firebase-auth.js"></script>
-    <script src="/__/firebase/9.23.1/firebase-functions.js"></script>
-    <script src="/__/firebase/9.23.1/init.js"></script>
-    <script src="/js/scripts.css"></script>
     <script>
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const functions = firebase.functions();
-        
+       
+        var functions;
+        function initialize() {
+            // [START fb_functions_initialize]
+            firebase.initializeApp({
+                // Your Firebase Web SDK configuration
+                // [START_EXCLUDE]
+                projectId: "mmm-oasa",
+                apiKey: "AIzaSyCBTzDlQG-XtA0QcrVXdKFrkDZ69QWSYdE",
+                // [END_EXCLUDE]
+            });
+
+            functions = firebase.functions();
+            console.log(functions);
+            // [END fb_functions_initialize]
+        }
+        initialize();
+
         function getPendingApplications() {
+
             firebase.firestore().collection("Applications").where("status", "==", "pending")
                 .get()
                 .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         // doc.data() is never undefined for query doc snapshots
+
                         let data = doc.data();
+
                         let row = `<tr>
                             <td>${data.userID}</td>
                             <td>${data.lastname}</td>
                             <td>${data.firstname}</td>
                             <td>${data.status}</td>
                             <td>${data.role}</td>
-                            <td><button class="editbtn" onclick="changeCategory()">edit</button></td>
+                            <td><button class="editbtn" onclick="test('${data.userID}','${doc.id}')">edit</button></td>
                         </tr>`;
                         let table = document.getElementById('myTable');
                         table.innerHTML += row
@@ -139,25 +144,20 @@
                 });
         }
 
-        function changeCategory() {
-            firebase.auth().getAuth()
-                .getUser("n9zVQnCrV5bUk2XPwKGHGGLSc6R2")
-                .then((userRecord) => {
-                    // Confirm user is verified.
-                    //if (user.emailVerified) {
-                    // Add custom claims for additional privileges.
-                    console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
-                    // This will be picked up by the user on token refresh or next sign in on new device.
-                    return getAuth().setCustomUserClaims(userRecord.uid, {
-                        admin: true,
-                    });
-
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        function test(userId,docid) {
+            console.log(userId,docid);
+            let data = {
+                uid: userId
+            }
+            addSpecialRoleToUser = functions.httpsCallable('addSpecialRoleToUser');
+            addSpecialRoleToUser(data);
+            firebase.firestore().collection("Applications").doc(docid)
+            .update({ role: "special",
+                    status: "active",
+                    })
         }
 
+       
     </script>
 </body>
 

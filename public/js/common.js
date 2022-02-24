@@ -107,9 +107,11 @@ function showAdminUIElements(user) {
             if (!!idTokenResult.claims.admin) {
                 // Show admin UI.
                 console.log("user is admin");
-            }else{
+            }else if (idTokenResult.claims.role==="special"){
                 // Show regular user UI.
-                console.log(`user is :${idTokenResult.claims}`);
+                console.log(`user is :${idTokenResult.claims.role}`);
+            }else{
+                console.log(`user is :${idTokenResult.claims.role}`);
             }
         })
         .catch((error) => {
