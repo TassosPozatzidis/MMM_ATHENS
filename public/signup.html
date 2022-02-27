@@ -39,7 +39,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link"  href="generic.html">Αρχική</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">Σχετικά</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="contact.html">Επικοινωνία</a></li>
                         <li class="nav-item"><a class="nav-link active" href="signup.html">Εγγραφή</a></li>
                         <li class="nav-item"><a class="nav-link" href="signin.html">Είσοδος</a></li>
@@ -70,21 +69,6 @@
                 <div class="row">
 
                     <!--Grid column-->
-                    <!--<div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="firstname" name="name" class="form-control" placeholder="Όνομα" required/>
-                            <label for="firstname" class=""></label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="lastname" name="name" class="form-control" placeholder="Επώνυμο" required/>
-                            <label for="lastname" class=""></label>
-                        </div>
-                    </div>-->
-
-                    <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
                             <input type="email" id="email" name="email" class="form-control" placeholder="Email" required/>
@@ -108,7 +92,7 @@
                     &nbsp;&nbsp;&nbsp;
                     <button class="btn btn-primary" id="quickstart-sign-up" name="signup">Sign Up</button>
                     &nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-primary" id="quickstart-verify-email" name="verify-email">Send Email Verification</button>
+
 
           
                     <!-- Container where we'll display the user details -->
@@ -143,41 +127,7 @@
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
         </footer>
         <script type="text/javascript">
-      
-            /**
-             * Handles the sign in button press.
-             */
-            function toggleSignIn() {
-              if (firebase.auth().currentUser) {
-                firebase.auth().signOut();
-              } else {
-                var email = document.getElementById('email').value;
-                var password = document.getElementById('password').value;
-                if (email.length < 4) {
-                  alert('Please enter an email address.');
-                  return;
-                }
-                if (password.length < 4) {
-                  alert('Please enter a password.');
-                  return;
-                }
-                // Sign in with email and pass.
-                firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-                  // Handle Errors here.
-                  var errorCode = error.code;
-                  var errorMessage = error.message;
-                  if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                  } else {
-                    alert(errorMessage);
-                  }
-                  console.log(error);
-                  document.getElementById('quickstart-sign-in').disabled = false;
-                });
-              }
-              document.getElementById('quickstart-sign-in').disabled = true;
-            }
-        
+   
             /**
              * Handles the sign up button press.
              */
@@ -193,7 +143,9 @@
                 return;
               }
               // Create user with email and pass.
-              firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){console.log(user)
+              firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
+                console.log(user);
+                sendEmailVerification();
                 }).catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;
@@ -244,21 +196,18 @@
             function initApp() {
               // Listening for auth state changes.
               firebase.auth().onAuthStateChanged(function(user) {
-                document.getElementById('quickstart-verify-email').disabled = true;
                 if (user) {
                   // User is signed in.
                   var displayName = user.displayName;
                   var email = user.email;
                   var emailVerified = user.emailVerified;
-                  var photoURL = user.photoURL;
                   var isAnonymous = user.isAnonymous;
                   var uid = user.uid;
-                  var providerData = user.providerData;
                   document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
                   document.getElementById('quickstart-sign-in').textContent = 'Sign out';
                   document.getElementById('quickstart-account-details').textContent = 'You are registered as : '+ email;
                   if (!emailVerified) {
-                    document.getElementById('quickstart-verify-email').disabled = false;
+
                   }
                 } else {
                   // User is signed out.
@@ -269,9 +218,7 @@
                 document.getElementById('quickstart-sign-in').disabled = false;
               });
         
-              document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
               document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);
-              document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
 
             }
         

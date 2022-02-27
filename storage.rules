@@ -1,10 +1,8 @@
 rules_version = '2';
 service firebase.storage {
-    match /b/{bucket}/o {
-    match /tickets/{imageId} {
-      // Only allow uploads of any image file that's less than 5MB
-      allow write: if request.resource.size < 5 * 1024 * 1024
-                   && request.resource.contentType.matches('tickets/.*');
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null;
     }
   }
 }

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>ATH.ENA Ticket</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-functions.js"></script>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="styles.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-lg-5">
+            <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="generic.html">Αρχική</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AdminPanel.html">Προσθήκη Δικαιωμάτων</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" onclick=signOut()>Έξοδος</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="py-5">
+        <div class="container px-lg-5">
+            <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                <div class="m-4 m-lg-5">
+                    <h3 class="display-5 fw-bold">Panel Διαχειριστη</h3>
+                    <p class="fs-4">Επιλέξτε τον χρήστη, κατεβάστε τα δικαιολογητικά και προσθέστε ή αφαιρέστε
+                        δικαιώματα.</p>
+                    </br>
+                    <h5 class="fs-4">Αφαίρεση Δικαιωμάτων</h5>
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>firstname</th>
+                                <th>lastname</th>
+                                <th>status</th>
+                                <th>role</th>
+                                <th>Αφαίρεση Δικαιωμάτων</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Page Content-->
+    <section class="pt-4">
+        <div class="container px-lg-5">
+            <!-- Page Features-->
+            <div class="row gx-lg-5">
+                <div class="col-lg-6 col-xxl-4 mb-5">
+
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Footer-->
+    <div class="fixed-bottom">
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p>
+            </div>
+        </footer>
+    </div>
+    <!-- Bootstrap core JS-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        var functions;
+
+        function initialize() {
+            // [START fb_functions_initialize]
+            firebase.initializeApp({
+                // Your Firebase Web SDK configuration
+                // [START_EXCLUDE]
+                projectId: "mmm-oasa",
+                apiKey: "AIzaSyCBTzDlQG-XtA0QcrVXdKFrkDZ69QWSYdE",
+                // [END_EXCLUDE]
+            });
+
+            functions = firebase.functions();
+            console.log(functions);
+            // [END fb_functions_initialize]
+        }
+        initialize();
+
+        function getPendingApplications() {
+            let cleartb = `$("#myTable").remove()`; 
+            let table = document.getElementById('myTable');
+            table.innerHTML="";
+  
+            firebase.firestore().collection("Applications").where("status", "==", "active")
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        // doc.data() is never undefined for query doc snapshots
+                        let data = doc.data();
+                        let row = `<tr>
+                            <td>${data.lastname}</td>
+                            <td>${data.firstname}</td>
+                            <td>${data.status}</td>
+                            <td>${data.role}</td>
+                            <td><button type="button" class="btn btn-primary btn-sm" onclick="removeCred('${data.userID}','${doc.id}')">Ενημέρωση</button></td>
+                        </tr>`;
+                        table.innerHTML += row
+                    });
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+        }
+        window.addEventListener('load', function () {
+
+            initApp();
+        });
+
+        function initApp() {
+            // Listening for auth state changes.
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    // User is signed in.
+                    console.log(user);
+                    var email = user.email;
+                    var emailVerified = user.emailVerified;
+                    var uid = user.uid;
+                    user.getIdToken(true);
+                    user.getIdTokenResult()
+                        .then((idTokenResult) => {
+                            // Confirm the user is an Admin.
+                            if (!!idTokenResult.claims.admin) {
+                                getPendingApplications();
+                            } else {
+                                window.location = "signin.html";
+                            }
+                        });
+                } else {
+                    console.log(user);
+                    window.location = "signin.html";
+                }
+
+            });
+
+        }
+
+        function giveCred(userId, docid) {
+            console.log(userId, docid);
+            let data = {
+                uid: userId
+            }
+            addSpecialRoleToUser = functions.httpsCallable('addSpecialRoleToUser');
+            addSpecialRoleToUser(data);
+            firebase.firestore().collection("Applications").doc(docid)
+                .update({
+                    role: "special",
+                    status: "active",
+                })
+        }
+
+        function removeCred(userId, docid) {
+            console.log(userId, docid);
+            let data = {
+                uid: userId
+            }
+            removeSpecialRoleToUser = functions.httpsCallable('removeSpecialRoleToUser');
+            removeSpecialRoleToUser(data);
+            firebase.firestore().collection("Applications").doc(docid)
+                .update({
+                    role: null,
+                    status: "declined",
+                })
+                initApp();
+        }
+
+        function reloadP() {
+            sessionStorage.setItem("reloading", "true");
+            document.location.reload();
+        }
+
+        function signOut() {
+            if (confirm("You are Going to Log Out")) {
+
+                firebase.auth().signOut().then(() => {
+                    // Sign-out successful.
+                    console.log(user);
+                    document.getElementById('').textContent = email;
+                    // User is signed out.
+                }).catch((error) => {
+                    console.log(error);
+                    // An error happened.
+                });
+
+            } else {
+                txt = "You pressed Cancel!";
+            }
+        }
+    </script>
+</body>
+
+</html>

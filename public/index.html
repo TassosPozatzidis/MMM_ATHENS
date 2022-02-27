@@ -5,28 +5,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>'Εκδοση εισητηρίων</title>
-        <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
-        <!-- include only the Firebase features as you need -->
-        <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
-        <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+        <title>ATH.ENA Ticket</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
-        <!-- Bootstrap icons-->
+            <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
     </head>
     <body>
-        
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
@@ -34,93 +33,57 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link"  href="generic.hmtl">Αρχική</a></li>
-                        <li class="nav-item"><a class="nav-link"  href="about.hmtl">Σχετικά</a></li>
-                        <li class="nav-item"><a class="nav-link"  href="contact.html">Επικοινωνία</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Αρχική</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tickets2.html">Εισιτήρια</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Σχετικά</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Ο Λογαριασμός μου
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" onclick="redirectBasedOnUserRole()">Ειδική Κατηγορία</a></li>
+                                <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
+    
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <!-- Header-->
         <header class="py-5">
             <div class="container px-lg-5">
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-                        <h1 class="display-5 fw-bold">Ψηφιακό εισιτήριο</h1>
-                        <p class="fs-4">Αγοράστε το εισιτήριο της επιλογή σας και αποθηκεύστε το στην συσκευή σας. Εύκολη χρήση του εισιτηρίου ανά πάσα στιγμή.</p>
-                        <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
+                    <div class="m-4 m-lg-5">
+                        <h1 class="display-5 fw-bold">Καλωσορίσατε <span id="displayEmail"></span> στην πλατφόρμα ΑTH.ENA Ticket</h1>
+                        <p class="fs-4">Η ηλεκτρονική πλατφόρμα για την αγορά εισιτηρίου για τα Μέσα Μαζικής Μεταφοράς. Mε ένα κλικ επιλέγετε το εισιτήριο που επιθυμείτε. Μπορείτε να μάθετε όλες τις πληροφορίες και να αγοράσετε το εισιτήριο σας.</p>
+
+                    </div>
                 </div>
             </div>
         </header>
-        
+        <!-- Page Content-->
         <section class="pt-4">
             <div class="container px-lg-5">
                 <!-- Page Features-->
-                <div class="row gx-lg-5">
-                    <input type="file" id="filename"/><input type="button" value="Upload" onclick="uploadFile()"/><br>
-                        <div id="files"></div>
-
-
-                    
-
-                </div>
+                
             </div>
-
-
-
 
         </section>
         <!-- Footer-->
+    <!-- Footer-->
+    <div class="fixed-bottom">
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p>
+            </div>
         </footer>
-<script>
-        document.addEventListener('DOMContentLoaded', function () {
-        listenForChanges();
-        listenForFiles();
-    });
-        function uploadFile() {
-        let file = document.getElementById("filename").files[0];
-        console.log("Filename: " + file.name + " size:" + file.size + " type:" + file.type);
-        let metadata = {contentType: file.type};
-        let uploadTask = firebase.storage().ref().child('documents/' + file.name).put(file, metadata);
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-            function (snapshot) {
-                let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                document.getElementById("files").innerHTML = 'Upload is ' + progress + '% done';
-            },
-            function (error) {
-                console.log(error)
-            },
-            function () {
-                uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                    console.log('File available at', downloadURL);
-                });
-            });
-    }
-
-    function listenForFiles() {
-        firebase.firestore().collection("documents")
-            .orderBy("updated", "desc")
-            .limit(3)
-            .onSnapshot(function (querySnapshot) {
-                let files = [];
-                querySnapshot.forEach(function (doc) {
-                    let file = doc.data();
-                    // https://www.googleapis.com/download/storage/v1/b/unipi-aps.appspot.com/o/images%2FuNIPI.jpg?generation=1610549348125433&alt=media
-                    // https://firebasestorage.googleapis.com/v0/b/unipi-aps.appspot.com/o/images%2FuNIPI.jpg?alt=media&token=c1a62660-cf1c-4e4f-a8fa-a0baf075d773
-                    let url = file.mediaLink.replace(
-                        'https://www.googleapis.com/download/storage/v1',
-                        'https://firebasestorage.googleapis.com/v0');
-                    let html = `<img src='${url}'/><br>${file.name}`
-                    files.push(html);
-                });
-                document.getElementById("files").innerHTML = files.join("<br>");
-            });
-    }
-</script>
+    </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="/js/scripts.css"></script>
-
+        <script type="text/javascript" src="js/common.js"></script>
     </body>
 </html>

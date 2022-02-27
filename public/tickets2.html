@@ -1,333 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Αγορά εισιτηρίων</title>
-        <!-- Favicon-->
-        <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
-        <!-- include only the Firebase features as you need -->
-        <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
-        <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
-        <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="styles.css" rel="stylesheet" />
-        <script src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
-        <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
-        <script src="/__/firebase/init.js"></script>
 
-    </head>
-    <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-lg-5">
-                <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link"  href="generic.hmtl">Αρχική</a></li>
-                        <li class="nav-item"><a class="nav-link"  href="about.html">Σχετικά</a></li>
-                        <li class="nav-item"><a class="nav-link"  href="contact.html">Επικοινωνία</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Ο Λογαριασμός μου
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <li><a class="dropdown-item" href="formspecial.html">Ειδική Κατηγορία</a></li>
-                              <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
-                            
-                            </ul>
-                        </li>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Αγορά εισιτηρίων</title>
+    <!-- Favicon-->
+    <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="styles.css" rel="stylesheet" />
+    <script src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
+    <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
+    <script src="/__/firebase/init.js"></script>
 
-                    </ul>
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-lg-5">
+            <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Αρχική</a></li>
+                    <li class="nav-item"><a class="nav-link  active" aria-current="page" href="tickets2.html">Εισιτήρια</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Σχετικά</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Ο Λογαριασμός μου
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" onclick="redirectBasedOnUserRole()">Ειδική Κατηγορία</a></li>
+                            <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="py-4">
+        <div class="container px-lg-5">
+            <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                <h1 class="display-5 fw-bold">Ψηφιακό εισιτήριο</h1>
+                <p class="fs-4">Αγοράστε το εισιτήριο της επιλογή σας και αποθηκεύστε το στην συσκευή σας. Εύκολη χρήση
+                    του εισιτηρίου ανά πάσα στιγμή.</p>
+                <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
+            </div>
+        </div>
+    </header>
+
+
+
+    <div class="container-fluid py-lg-3">
+        <div class="row eq-height">
+
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Ενιαίο Εισιτήριο</h5>
+                        <p class="card-text text-center">
+                            Το ενιαίο εισιτήριο, ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ.
+                            Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό
+                            στο τμήμα Κορωπί-Αεροδρόμιο.
+                            Ο χρόνος ισχύος του ενιαίου εισιτηρίου είναι 90 λεπτά από την πρώτη επικύρωσή του.
+                            <br><strong>Κόστος:1,20&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="BuySimpleTicket.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-        <header class="py-4">
-            <div class="container px-lg-5">
-                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-                        <h1 class="display-5 fw-bold">Ψηφιακό εισιτήριο</h1>
-                        <p class="fs-4">Αγοράστε το εισιτήριο της επιλογή σας και αποθηκεύστε το στην συσκευή σας. Εύκολη χρήση του εισιτηρίου ανά πάσα στιγμή.</p>
-                        <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Ημερήσιο εισιτήριο</h5>
+                        <p class="card-text text-center">
+                            Το ημερήσιο εισιτήριο ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ. Ισχύει στη γραμμή Χ80.
+                            Ισχύει για 24 ώρες από την πρώτη επικύρωσή του.
+                            Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, και στο Μετρό στο τμήμα
+                            Κορωπί-Αεροδρόμιο.
+                            <br><strong>Κόστος:4,10&euro;</strong></br>
+                        </p>
+                        <div class="text-center">
+
+                            <a href="BuyTicket.html" class="btn btn-primary">Αγορά</a>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </header>
-        
-        
-
-        <div class="container-fluid py-lg-3">
-            <div class="row eq-height"> 
 
 
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Ενιαίο Εισιτήριο</h5>
-                                <p class="card-text text-center">
-                                    Το ενιαίο εισιτήριο, ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ.
-                                    Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό στο τμήμα Κορωπί-Αεροδρόμιο.
-                                    Ο χρόνος ισχύος του ενιαίου εισιτηρίου είναι 90 λεπτά από την πρώτη επικύρωσή του.
-                                    <br><strong>Κόστος:1,20&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="BuySimpleTicket.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
+
+
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Εισιτήριο 5 Ημερών</h5>
+                        <p class="card-text text-center">
+                            Το εισιτήριο 5 ημερών ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ και στην ΤΡΑΙΝΟΣΕ (στο τμήμα
+                            του Προαστιακού Μαγούλα-Πειραιάς-Κορωπί).
+                            Ισχύει για 5 πλήρη 24ωρα από την πρώτη επικύρωσή του.
+                            Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό
+                            στο τμήμα Κορωπί-Αεροδρόμιο.
+                            <br><strong>Κόστος:8,20&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="Buy5DaysTicket.html" class="btn btn-primary">Αγορά</a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Ημερήσιο εισιτήριο</h5>
-                                <p class="card-text text-center">
-                                    Το ημερήσιο εισιτήριο ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ. Ισχύει στη γραμμή Χ80.
-                                    Ισχύει για 24 ώρες από την πρώτη επικύρωσή του.
-                                    Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, και στο Μετρό στο τμήμα Κορωπί-Αεροδρόμιο.
-                                    <br><strong>Κόστος:4,10&euro;</strong></br>
-                                </p> 
-                                    <div class="text-center">
-                                    
-                                            <a href="BuyTicket.html" class="btn btn-primary">Αγορά</a>
-                                        
-                                    </div>
-                            </div>
-                    </div>
-                </div>
-
-             
-               
-
-
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Εισιτήριο 5 Ημερών</h5>
-                                <p class="card-text text-center">
-                                    Το εισιτήριο 5 ημερών ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Κορωπί).
-                                     Ισχύει για 5 πλήρη 24ωρα από την πρώτη επικύρωσή του.
-                                    Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό στο τμήμα Κορωπί-Αεροδρόμιο.
-                                   <br><strong>Κόστος:8,20&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="Buy5DaysTicket.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Τουριστικό Εισιτήριο 3 Ημερών</h5>
-                                <p class="card-text text-center">
-                                     Το 3ημερο τουριστικό εισιτήριο ισχύει για 3 πλήρη 24ωρα από την πρώτη επικύρωσή του, σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ και 
-                                     περιλαμβάνει μια διαδρομή από και προς τον Διεθνή Αερολιμένα Αθηνών με το Μετρό ή
-                                     τις αντίστοιχες λεωφορειακές γραμμές EXPRESS.
-                                    <br><strong>Κόστος:20,00&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="BuyTouristTicket.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Λεωφοριακές Γραμμές EXPRESS</h5>
-                                <p class="card-text text-center">
-                                    Τα εισιτήρια για τις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου ισχύουν για μία μόνο διαδρομή, από ή προς το Αεροδρόμιο.
-                                    <br><strong>Κόστος:5,50&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="BuyExpressTicket.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Eισιτήριο Mετρό Aεροδρομίου</h5>
-                                <p class="card-text text-center">
-                                    Τα εισιτήρια Αεροδρομίου του Μετρό ισχύουν σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ για 90 λεπτά από 
-                                    την πρώτη επικύρωσή τους σε πύλη σταθμού του μετρό ή σε επικυρωτικό μηχάνημα στα Λεωφορεία, Τρόλεϊ, Τραμ.
-                                    <br><strong>Κόστος:9,00&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="AirportOneTicket.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Eισιτήριο Mετρό Aεροδρομίου Mε Επιστροφή</h5>
-                                <p class="card-text text-center">
-                                    Τα εισιτήρια Αεροδρομίου του Μετρό με επιστροφή ισχύουν σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ για 2 διαδρομές διάρκειας 90 λεπτών από 
-                                    την πρώτη επικύρωσή τους σε πύλη σταθμού του μετρό ή σε επικυρωτικό μηχάνημα στα Λεωφορεία, Τρόλεϊ, Τραμ.
-                                    <br><strong>Κόστος:18,00&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="Buy2WayAirport.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center"> Eισιτήριο Aεροδρομίου Παλλήνη-Κάντζα-Κορωπί Mετρό</h5>
-                                <p class="card-text text-center">
-                                    Τα εισιτήρια του ΜΕΤΡΟ από τους σταθμούς Παλλήνη, Κάντζα, Κορωπί προς και από το Αεροδρόμιο, ισχύουν σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ για 90 λεπτά από την επικύρωσή τους.
-                                    Ισχύουν επίσης και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Αεροδρόμιο).
-                                    Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου.
-                                    <br><strong>Κόστος:5,50&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="BuyAirportTicket.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-
-
-               
-
-
-
             </div>
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Τουριστικό Εισιτήριο 3 Ημερών</h5>
+                        <p class="card-text text-center">
+                            Το 3ημερο τουριστικό εισιτήριο ισχύει για 3 πλήρη 24ωρα από την πρώτη επικύρωσή του, σε όλα
+                            τα μέσα αρμοδιότητας ΟΑΣΑ και
+                            περιλαμβάνει μια διαδρομή από και προς τον Διεθνή Αερολιμένα Αθηνών με το Μετρό ή
+                            τις αντίστοιχες λεωφορειακές γραμμές EXPRESS.
+                            <br><strong>Κόστος:20,00&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="BuyTouristTicket.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Λεωφοριακές Γραμμές EXPRESS</h5>
+                        <p class="card-text text-center">
+                            Τα εισιτήρια για τις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου ισχύουν για μία μόνο
+                            διαδρομή, από ή προς το Αεροδρόμιο.
+                            <br><strong>Κόστος:5,50&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="BuyExpressTicket.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Eισιτήριο Mετρό Aεροδρομίου</h5>
+                        <p class="card-text text-center">
+                            Τα εισιτήρια Αεροδρομίου του Μετρό ισχύουν σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ για 90 λεπτά από
+                            την πρώτη επικύρωσή τους σε πύλη σταθμού του μετρό ή σε επικυρωτικό μηχάνημα στα Λεωφορεία,
+                            Τρόλεϊ, Τραμ.
+                            <br><strong>Κόστος:9,00&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="AirportOneTicket.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Eισιτήριο Mετρό Aεροδρομίου Mε Επιστροφή</h5>
+                        <p class="card-text text-center">
+                            Τα εισιτήρια Αεροδρομίου του Μετρό με επιστροφή ισχύουν σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ για
+                            2 διαδρομές διάρκειας 90 λεπτών από
+                            την πρώτη επικύρωσή τους σε πύλη σταθμού του μετρό ή σε επικυρωτικό μηχάνημα στα Λεωφορεία,
+                            Τρόλεϊ, Τραμ.
+                            <br><strong>Κόστος:18,00&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="Buy2WayAirport.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"> Eισιτήριο Aεροδρομίου Παλλήνη-Κάντζα-Κορωπί Mετρό</h5>
+                        <p class="card-text text-center">
+                            Τα εισιτήρια του ΜΕΤΡΟ από τους σταθμούς Παλλήνη, Κάντζα, Κορωπί προς και από το Αεροδρόμιο,
+                            ισχύουν σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ για 90 λεπτά από την επικύρωσή τους.
+                            Ισχύουν επίσης και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Αεροδρόμιο).
+                            Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου.
+                            <br><strong>Κόστος:5,50&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="BuyAirportTicket.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
 
         </div>
 
+    </div>
 
-        <style>
-            body {
+
+    <style>
+        body {
             font-family: Arial, Helvetica, sans-serif;
-            }
-            hr.solid {
+        }
+
+        hr.solid {
             border-top: 3px solid #bbb;
-            }
-    
-        </style>  <!-- DIVIDER STYLE -->
-    
-        <hr class="solid"> <!--divider-->
-        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-            <h1 class>Πακέτα εισιτηρίων</h1>.
-        </div>
-    
+        }
+    </style> <!-- DIVIDER STYLE -->
+
+    <hr class="solid">
+    <!--divider-->
+    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+        <h1 class>Πακέτα εισιτηρίων</h1>.
+    </div>
 
 
 
-        <div class="container-fluid py-lg-3">
-            <div class="row eq-height"> 
-                <div class="col-sm-0 col-md-0 col-lg-2 pb-4 d-flex">
-                </div>
 
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Ενιαίο Eισιτήριο 2 Διαδρομών</h5>
-                                <p class="card-text text-center">
-                                    Το ενιαίο εισιτήριο 5 διαδρομών, ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Κορωπί).
-                                    Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό στο τμήμα Κορωπί-Αεροδρόμιο.
-                                    Περιλαμβάνει 5 διαδρομές των 90 λεπτών.
-                                    <br><strong>Κόστος:2,30&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="BuyTicket2Routes.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Εισιτήριο 5 Διαδρομών</h5>
-                                <p class="card-text text-center">
-                                    Το ενιαίο εισιτήριο 5 διαδρομών, ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Κορωπί).
-                                    Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό στο τμήμα Κορωπί-Αεροδρόμιο.
-                                    Περιλαμβάνει 5 διαδρομές των 90 λεπτών.
-                                 <br><strong>Κόστος:5,70&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="Buy5RoutesTicket.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-             
-                <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
-                    <div class="card bg-light" style="width: 20rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Ενιαίο Eισιτήριο 10+1 Διαδρομών</h5>
-                                <p class="card-text text-center">
-                                    Το ενιαίο εισιτήριο 10+1 διαδρομών, ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ: Λεωφορεία, Τρόλεϊ, Τραμ, Ηλεκτρικό Σιδηρόδρομο, Μετρό (μέχρι Κορωπί) και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Κορωπί).
-                                 Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό στο τμήμα Κορωπί-Αεροδρόμιο.
-                                 Περιλαμβάνει 11 διαδρομές των 90 λεπτών στην τιμή των 10 διαδρομών.
-                                 <br><strong>Κόστος:12,00&euro;</strong></br>
-                                </p> 
-                                   
-                                <div class="text-center">
-                                    <a href="Buy10+1Ticket.html" class="btn btn-primary">Αγορά</a>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-
-
-
+    <div class="container-fluid py-lg-3">
+        <div class="row eq-height">
+            <div class="col-sm-0 col-md-0 col-lg-2 pb-4 d-flex">
             </div>
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Ενιαίο Eισιτήριο 2 Διαδρομών</h5>
+                        <p class="card-text text-center">
+                            Το ενιαίο εισιτήριο 5 διαδρομών, ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ και στην ΤΡΑΙΝΟΣΕ
+                            (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Κορωπί).
+                            Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό
+                            στο τμήμα Κορωπί-Αεροδρόμιο.
+                            Περιλαμβάνει 5 διαδρομές των 90 λεπτών.
+                            <br><strong>Κόστος:2,30&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="BuyTicket2Routes.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Εισιτήριο 5 Διαδρομών</h5>
+                        <p class="card-text text-center">
+                            Το ενιαίο εισιτήριο 5 διαδρομών, ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ και στην ΤΡΑΙΝΟΣΕ
+                            (στο τμήμα του Προαστιακού Μαγούλα-Πειραιάς-Κορωπί).
+                            Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό
+                            στο τμήμα Κορωπί-Αεροδρόμιο.
+                            Περιλαμβάνει 5 διαδρομές των 90 λεπτών.
+                            <br><strong>Κόστος:5,70&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="Buy5RoutesTicket.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-12 col-md-4 col-lg-3 pb-4 d-flex">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Ενιαίο Eισιτήριο 10+1 Διαδρομών</h5>
+                        <p class="card-text text-center">
+                            Το ενιαίο εισιτήριο 10+1 διαδρομών, ισχύει σε όλα τα μέσα αρμοδιότητας ΟΑΣΑ: Λεωφορεία,
+                            Τρόλεϊ, Τραμ, Ηλεκτρικό Σιδηρόδρομο, Μετρό (μέχρι Κορωπί) και στην ΤΡΑΙΝΟΣΕ (στο τμήμα του
+                            Προαστιακού Μαγούλα-Πειραιάς-Κορωπί).
+                            Δεν ισχύει στις λεωφορειακές γραμμές EXPRESS του Αεροδρομίου, στη γραμμή Χ80 και στο Μετρό
+                            στο τμήμα Κορωπί-Αεροδρόμιο.
+                            Περιλαμβάνει 11 διαδρομές των 90 λεπτών στην τιμή των 10 διαδρομών.
+                            <br><strong>Κόστος:12,00&euro;</strong></br>
+                        </p>
+
+                        <div class="text-center">
+                            <a href="Buy10+1Ticket.html" class="btn btn-primary">Αγορά</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
+    </div>
 
+    </section>
+    <!-- Footer-->
+    <div class="fixed-bottom">
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p>
+        </div>
+    </footer>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script type="text/javascript" src="js/common.js"></script>
+</body>
 
-
-
-
-
-        </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-               
-        <script type="text/javascript" src="js/common.js"></script>
-    </body>
 </html>

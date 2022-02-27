@@ -3,6 +3,15 @@ document.addEventListener('DOMContentLoaded', function () {
     listenUser();
 });
 
+function checkUserRole() {
+    console.log(userId,docid);
+    let data = {
+        uid: userId
+    }
+    checkUser = functions.httpsCallable('checkUser');
+    checkUser();
+}
+
 function downloadFile(FileN) {
 
     var storage = firebase.storage();
@@ -67,6 +76,30 @@ window.addEventListener('load', function () {
     initApp2();
 });
 
+function redirectBasedOnUserRole() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        user.getIdToken(true);
+        user.getIdTokenResult()
+            .then((idTokenResult) => {
+                // Confirm the user is an Admin.
+                if (!!idTokenResult.claims.admin) {
+                    // Show admin UI.
+                    console.log("user is admin");
+                } else if (idTokenResult.claims.role === "special") {
+                    // Show regular user UI.
+                    location.href = "reducedtickets.html";
+                    console.log(`user is :${idTokenResult.claims.role}`);
+                } else {
+                    location.href = "formspecial.html";
+                    console.log(`user is :${idTokenResult.claims.role}`);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    });
+}
+
 function initApp2() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -78,17 +111,8 @@ function initApp2() {
             var emailVerified = user.emailVerified;
             var photoURL = user.photoURL;
             var uid = user.uid;
-            var phoneNumber = user.phoneNumber;
-            var providerData = user.providerData;
             document.getElementById('navbarDropdownMenuLink').innerHTML = email;
-            /**user.getIdToken().then(function (accessToken) {
-                document.getElementById('sign-in-status').textContent = 'Signed in';
-                document.getElementById('sign-in').textContent = 'Sign out';
-                document.getElementById('navbarDropdownMenuLink').textContent = JSON.stringify({
-                    email: email,
-                    uid: uid
-                }, null, '  ');
-            });**/
+            document.getElementById('displayEmail').innerHTML = email;
             showAdminUIElements(user);
         } else {
             // User is signed out.
@@ -99,14 +123,18 @@ function initApp2() {
     });
 };
 
-function showAdminUIElements(user) {
+function showAdminUIElements() {
+    firebase.auth().onAuthStateChanged(function (user) {
     user.getIdToken(true);
     user.getIdTokenResult()
         .then((idTokenResult) => {
             // Confirm the user is an Admin.
             if (!!idTokenResult.claims.admin) {
                 // Show admin UI.
+                
                 console.log("user is admin");
+                
+
             }else if (idTokenResult.claims.role==="special"){
                 // Show regular user UI.
                 console.log(`user is :${idTokenResult.claims.role}`);
@@ -117,6 +145,7 @@ function showAdminUIElements(user) {
         .catch((error) => {
             console.log(error);
         });
+    });
 }
 
 
@@ -157,25 +186,5 @@ function uploadFile() {
             uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                 console.log('File available at', downloadURL);
             });
-        });
-}
-
-function listenForFiles() {
-    firebase.firestore().collection("images")
-        .orderBy("updated", "desc")
-        .limit(3)
-        .onSnapshot(function (querySnapshot) {
-            let files = [];
-            querySnapshot.forEach(function (doc) {
-                let file = doc.data();
-                // https://www.googleapis.com/download/storage/v1/b/unipi-aps.appspot.com/o/images%2FuNIPI.jpg?generation=1610549348125433&alt=media
-                // https://firebasestorage.googleapis.com/v0/b/unipi-aps.appspot.com/o/images%2FuNIPI.jpg?alt=media&token=c1a62660-cf1c-4e4f-a8fa-a0baf075d773
-                let url = file.mediaLink.replace(
-                    'https://www.googleapis.com/download/storage/v1',
-                    'https://firebasestorage.googleapis.com/v0');
-                let html = `<img src='${url}'/><br>${file.name}`
-                files.push(html);
-            });
-            document.getElementById("files").innerHTML = files.join("<br>");
         });
 }

@@ -1,318 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Είσοδος</title>
-        <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="styles.css" rel="stylesheet" />
-        <script src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
-        <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
-        <script src="/__/firebase/init.js"></script>
-      
-        
-    </head>
-    <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-lg-5">
-                <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link"  href="generic.html">Αρχική</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">Σχετικά</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="contact.html">Επικοινωνία</a></li>
-                        <li class="nav-item"><a class="nav-link" href="signup.html">Εγγραφή</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="signin.html">Είσοδος</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Header-->
-        <header class="py-5">
-            <div class="container px-lg-5">
-               <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-                     <div class="m-4 m-lg-5">
-                    <!--    Section: Contact v.2-->
-<section class="mb-4">
 
-    <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Είσοδος</h2>
-    <!--Section description-->
-    <p class="text-center w-responsive mx-auto mb-5">Για είσοδο στο σύστημα εισιτηρίων συμπληρώστε τα παρακάτω στοιχεία</p>
-
-    <div class="row">
-
-        <!--Grid column-->
-        <div class="text-center w-responsive mx-auto mb-5">
-            <form id="signup-form" name="signup-form">
-
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <!--<div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="firstname" name="name" class="form-control" placeholder="Όνομα" required/>
-                            <label for="firstname" class=""></label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="lastname" name="name" class="form-control" placeholder="Επώνυμο" required/>
-                            <label for="lastname" class=""></label>
-                        </div>
-                    </div>-->
-
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required/>
-                            <label for="signup-email" class=""></label>
-                        </div>
-                    </div>
-
-                                        <!--Grid column-->
-                                        <div class="col-md-6">
-                                            <div class="md-form mb-0">
-                                                <input type="password" id="password" name="password" class="form-control" placeholder="Κωδικός" required/>
-                                                <label for="password" class=""></label>
-                                            </div>
-                                        </div>
-
-                    
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Είσοδος</title>
+  <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
+  <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+  <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+  <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
+  <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
+  <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
+  <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
+  <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="styles.css" rel="stylesheet" />
+  <script src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
+  <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
+  <script src="/__/firebase/init.js"></script>
 
 
-                <div class="text-center w-responsive mx-auto mb-5">
+</head>
 
-                    <button class="btn btn-primary" id="quickstart-sign-in" name="signin">Είσοδος</button>
-                    &nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-primary" id="quickstart-password-reset" name="verify-email">Send Password Reset Email</button>
-          
-                    <!-- Container where we'll display the user details -->
-                    <div class="quickstart-user-details-container">
-                      Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
-                      <div>Firebase auth <code>currentUser</code> object value:</div>
-                      <pre><code id="quickstart-account-details">null</code></pre>
-                    </div>
-
-                </div>
-
-            </form>
-
-        <!--Grid column-->
-
-       
-
+<body>
+  <!-- Responsive navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-lg-5">
+      <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="generic.html">Αρχική</a></li>
+          <li class="nav-item"><a class="nav-link" aria-current="page" href="contact.html">Επικοινωνία</a></li>
+          <li class="nav-item"><a class="nav-link" href="signup.html">Εγγραφή</a></li>
+          <li class="nav-item"><a class="nav-link active" href="signin.html">Είσοδος</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
+  <!-- Header-->
+  <header class="py-5">
+    <div class="container px-lg-5">
+      <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+        <div class="m-4 m-lg-5">
+          <!--    Section: Contact v.2-->
+          <section class="mb-4">
 
-</section>
-<!--Section: Contact v.2-->
-                        <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
+            <!--Section heading-->
+            <h2 class="h1-responsive font-weight-bold text-center my-4">Είσοδος</h2>
+            <!--Section description-->
+            <p class="text-center w-responsive mx-auto mb-5">Για είσοδο στο σύστημα εισιτηρίων συμπληρώστε τα παρακάτω
+              στοιχεία</p>
+
+            <div class="row">
+
+              <!--Grid column-->
+              <div class="text-center w-responsive mx-auto mb-5">
+                <form id="signup-form" name="signup-form">
+
+                  <!--Grid row-->
+                  <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                      <div class="md-form mb-0">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required />
+                        <label for="signup-email" class=""></label>
+                      </div>
                     </div>
-                </div>
-            </div>
-        </header>
-        <!-- Page Content-->
-        <div class="col-md-9 mb-md-0 mb-5"></div><br><br><br><br><br>
-            </div>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
-        </footer>
-        <script type="text/javascript">
-      
-          /**
-           * Handles the sign in button press.
-           */
-          function getUser(){
-            const user = firebase.auth().currentUser;
-            if (user !== null) {
-            // The user object has basic properties such as display name, email, etc.
-            const displayName = user.displayName;
-            const email = user.email;
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                      <div class="md-form mb-0">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Κωδικός"
+                          required />
+                        <label for="password" class=""></label>
+                      </div>
+                    </div>
 
 
-            // The user's ID, unique to the Firebase project. Do NOT use
-            // this value to authenticate with your backend server, if
-            // you have one. Use User.getToken() instead.
-            const uid = user.uid;
-            console.log(user);
-            }
+
+
+                    <div class="text-center w-responsive mx-auto mb-5">
+
+                      <button class="btn btn-primary" id="quickstart-sign-in" name="signin">Είσοδος</button>
+                      &nbsp;&nbsp;&nbsp;
+                      <button class="btn btn-primary" id="quickstart-password-reset" name="verify-email">
+                        Reset Password</button>
+
+                      <!-- Container where we'll display the user details -->
+                      <div class="quickstart-user-details-container">
+                        <span id="quickstart-sign-in-status"></span>
+                        <div><code></code></div>
+                        <pre><code id="quickstart-account-details"></code></pre>
+                      </div>
+
+                    </div>
+
+                </form>
+
+                <!--Grid column-->
+
+
+
+              </div>
+
+          </section>
+          <!--Section: Contact v.2-->
+          <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Page Content-->
+    <!-- Footer-->
+    <div class="fixed-bottom">
+      <footer class="py-5 bg-dark">
+          <div class="container">
+              <p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p>
+          </div>
+      </footer>
+  </div>
+  </footer>
+  <script type="text/javascript">
+    /**
+     * Handles the sign in button press.
+     */
+    function getUser() {
+      const user = firebase.auth().currentUser;
+      if (user !== null) {
+        // The user object has basic properties such as display name, email, etc.
+        const displayName = user.displayName;
+        const email = user.email;
+
+
+        // The user's ID, unique to the Firebase project. Do NOT use
+        // this value to authenticate with your backend server, if
+        // you have one. Use User.getToken() instead.
+        const uid = user.uid;
+        console.log(user);
+
+      }
+    }
+
+    function toggleSignIn() {
+      const user = firebase.auth().currentUser;
+      if (firebase.auth().currentUser) {
+        firebase.auth().signOut();
+      } else {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        if (email.length < 4) {
+          alert('Please enter an email address.');
+          return;
+        }
+        if (password.length < 4) {
+          alert('Please enter a password.');
+          return;
+        }
+        // Sign in with email and pass.
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
           }
-          function toggleSignIn() {
-            const user = firebase.auth().currentUser;
-            if (firebase.auth().currentUser) {
-              firebase.auth().signOut();
-            } else {
-              var email = document.getElementById('email').value;
-              var password = document.getElementById('password').value;
-              if (email.length < 4) {
-                alert('Please enter an email address.');
-                return;
-              }
-              if (password.length < 4) {
-                alert('Please enter a password.');
-                return;
-              }
-              // Sign in with email and pass.
-              firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                if (errorCode === 'auth/wrong-password') {
-                  alert('Wrong password.');
-                } else {
-                  alert(errorMessage);
-                }
-                console.log(error);
-                document.getElementById('quickstart-sign-in').disabled = false;
-              });
-            }
-            document.getElementById('quickstart-sign-in').disabled = true;
-            console.log(user);
-            //window.location = "tickets.html";
-            
-          }
-      
-          /**
-           * Handles the sign up button press.
-           */
-          function handleSignUp() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            if (email.length < 4) {
-              alert('Please enter an email address.');
-              return;
-            }
-            if (password.length < 4) {
-              alert('Please enter a password.');
-              return;
-            }
-            // Create user with email and pass.
-            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-              // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              if (errorCode == 'auth/weak-password') {
-                alert('The password is too weak.');
+          console.log(error);
+          document.getElementById('quickstart-sign-in').disabled = false;
+        });
+      }
+      document.getElementById('quickstart-sign-in').disabled = true;
+      console.log(user);
+    }
+
+    /**
+     * Handles the sign up button press.
+     */
+    function handleSignUp() {
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      if (email.length < 4) {
+        alert('Please enter an email address.');
+        return;
+      }
+      if (password.length < 4) {
+        alert('Please enter a password.');
+        return;
+      }
+      // Create user with email and pass.
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
+      window.location = "index.html";
+      var displayName = user.displayName;
+    }
+
+    /**
+     * Sends an email verification to the user.
+     */
+    function sendEmailVerification() {
+      firebase.auth().currentUser.sendEmailVerification().then(function () {
+        // Email Verification sent!
+        alert('Email Verification Sent!');
+      });
+    }
+
+    function signOut() {
+      firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        console.log(user);
+        // User is signed out.
+        // document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+        // document.getElementById('quickstart-sign-in').textContent = 'Sign in';
+        // document.getElementById('quickstart-account-details').textContent = 'null';
+
+      }).catch((error) => {
+        console.log(error);
+        // An error happened.
+      });
+    }
+
+    function sendPasswordReset() {
+      var email = document.getElementById('email').value;
+      firebase.auth().sendPasswordResetEmail(email).then(function () {
+        // Password Reset Email Sent!
+        alert('Password Reset Email Sent!');
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/invalid-email') {
+          alert(errorMessage);
+        } else if (errorCode == 'auth/user-not-found') {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
+    }
+
+
+    /**
+     * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+     *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+     *    out, and that is where we update the UI.
+     */
+
+    function initApp() {
+      // Listening for auth state changes.
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          // User is signed in.
+          console.log(user);
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+          document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+
+          user.getIdToken(true);
+          user.getIdTokenResult()
+            .then((idTokenResult) => {
+              // Confirm the user is an Admin.
+              if (!!idTokenResult.claims.admin) {
+                window.location = "AdminPanel.html";
               } else {
-                alert(errorMessage);
+                window.location = "index.html";
               }
-              console.log(error);
-            });
-            window.location = "tickets2.html";
-            var displayName = user.displayName;
-          }
-      
-          /**
-           * Sends an email verification to the user.
-           */
-          function sendEmailVerification() {
-            firebase.auth().currentUser.sendEmailVerification().then(function() {
-              // Email Verification sent!
-              alert('Email Verification Sent!');
-            });
-          }
-          function signOut(){
-            firebase.auth().signOut().then(() => {
-                              // Sign-out successful.
-                              console.log(user);
-                // User is signed out.
-                document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-                document.getElementById('quickstart-sign-in').textContent = 'Sign in';
-                document.getElementById('quickstart-account-details').textContent = 'null';
 
-              }).catch((error) => {
-                console.log(error);
-                              // An error happened.
-              });
-          }
-          function sendPasswordReset() {
-            var email = document.getElementById('email').value;
-            firebase.auth().sendPasswordResetEmail(email).then(function() {
-              // Password Reset Email Sent!
-              alert('Password Reset Email Sent!');
-            }).catch(function(error) {
-              // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              if (errorCode == 'auth/invalid-email') {
-                alert(errorMessage);
-              } else if (errorCode == 'auth/user-not-found') {
-                alert(errorMessage);
-              }
-              console.log(error);
+
             });
-          }
-      
-          /**
-           * initApp handles setting up UI event listeners and registering Firebase auth listeners:
-           *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
-           *    out, and that is where we update the UI.
-           */
 
-          function initApp() {
-            // Listening for auth state changes.
-            firebase.auth().onAuthStateChanged(function(user) {
-              if (user) {
-                // User is signed in.
-                console.log(user);
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var isAnonymous = user.isAnonymous;
-                var uid = user.uid;
-                var providerData = user.providerData;
-                document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-                document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-                document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-                window.location = "tickets2.html";
-                if (!emailVerified) {
-                 console.log(user);
-                }
-              } else {
-                console.log(user);
-                // User is signed out.
-                document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-                document.getElementById('quickstart-sign-in').textContent = 'Sign in';
-                document.getElementById('quickstart-account-details').textContent = 'null';
-              }
-              document.getElementById('quickstart-sign-in').disabled = false;
-            });
-            
-            document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
+        } else {
+          console.log(user);
+          // User is signed out.
+          // document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+          // document.getElementById('quickstart-sign-in').textContent = 'Sign in';
+          // document.getElementById('quickstart-account-details').textContent = 'null';
+        }
+        document.getElementById('quickstart-sign-in').disabled = false;
+      });
 
-            document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
-          }
-      
-          window.onload = function() {
-            initApp();
-          };
-        </script>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
 
-    </body>
+      document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
+    }
+
+    window.onload = function () {
+      initApp();
+    };
+  </script>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
 </html>

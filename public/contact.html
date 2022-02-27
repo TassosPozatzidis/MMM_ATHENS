@@ -39,14 +39,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link"  href="generic.html">Αρχική</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">Σχετικά</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tickets2.html">Εισιτήρια</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="contact.html">Επικοινωνία</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="account-details" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               Ο Λογαριασμός μου
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="account-details">
-                              <li><a class="dropdown-item" href="formspecial.html">Ειδική Κατηγορία</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                              <li><a class="dropdown-item" href="redirectBasedOnUserRole()">Ειδική Κατηγορία</a></li>
                               <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
                             
                             </ul>
@@ -171,60 +171,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.css"></script>
-        <script>
-
-            document.addEventListener('DOMContentLoaded', function () {
-            listenForChanges();
-            listenForFiles();
-            listenUser();
-        });
-
-
-        
-        function initApp2() {
-//        firebase.auth().onAuthStateChanged(function(user) {
-          let user= firebase.auth().currentUser;
-          if (user) {
-            // User is signed in.
-            console.log(user);
-            
-            var displayName = user.displayName;
-            var email = user.email;
-            var uid = user.uid;
-            document.getElementById('account-details').innerHTML = email;
-          } else {
-            // User is signed out.
-            console.log(user);
-            document.getElementById('account-details').innerHTML = "";
-          }
-/*        }, function(error) {
-          console.log(error);
-        }); */
-        };
-        
- //       window.addEventListener('load', function() {
- //       initApp2()
- //       });
-
-                function signOut(){
-                        if (confirm("You are Going to Log Out")) {
-        
-                                firebase.auth().signOut().then(() => {
-                                  // Sign-out successful.
-                                                console.log(user);
-                                                document.getElementById('').textContent =email;
-                    // User is signed out.
-                                    }).catch((error) => {
-                                        console.log(error);
-                                                    // An error happened.
-                                    });
-                  
-                        } else {
-                            txt = "You pressed Cancel!";
-                    }
-              }
-
-        </script>
+        <script type="text/javascript" src="js/common.js"></script>
     </body>
 </html>

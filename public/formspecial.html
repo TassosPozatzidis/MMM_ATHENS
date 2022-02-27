@@ -7,17 +7,6 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <title>Φόρμα ειδικής κατηγορίας</title>
-  <!-- Favicon-->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
-  </script>
-  <!--Import bootstrap js so i can make popovers-->
-  <script src=”https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js”
-    integrity=”sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ” crossorigin=”anonymous”>
-  </script>
 
   <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
   <!-- include only the Firebase features as you need -->
@@ -31,8 +20,6 @@
   <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
   <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-  <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
   <!-- Bootstrap icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
   <!-- Core theme CSS (includes Bootstrap)-->
@@ -43,37 +30,46 @@
   <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
   <script src="/__/firebase/init.js"></script>
 
+    <!-- Favicon-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+  </script>
+  <!--Import bootstrap js so i can make popovers-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+  </script>
+
 </head>
 
 <body>
   <!-- Responsive navbar-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-lg-5">
-      <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-          class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="generic.html">Αρχική</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">Σχετικά</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Ο Λογαριασμός μου
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="formspecial.html">Ειδική Κατηγορία</a></li>
-              <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
-
+        <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Αρχική</a></li>
+                <li class="nav-item"><a class="nav-link" href="tickets2.html">Εισιτήρια</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Σχετικά</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Ο Λογαριασμός μου
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" onclick="redirectBasedOnUserRole()">Ειδική Κατηγορία</a></li>
+                        <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
+                    </ul>
+                </li>
             </ul>
-          </li>
-        </ul>
-      </div>
+        </div>
     </div>
-  </nav>
-
+</nav>
 
 
   <header class="py-5">
@@ -146,7 +142,6 @@
         </div>
         <div><label for="formFileLg" class="form-label" id="files"></label></div>
         </br><a class="btn btn-primary btn-lg" id="Upload" onclick="uploadFile();addData();">Επιβεβαίωση</a>
-        </br><a class="btn btn-primary btn-lg" id="Admin" onclick="addAdmin()">Make me Admin</a>
       </div>
 
     </div>
@@ -164,18 +159,6 @@
       return new bootstrap.Tooltip(tooltipTriggerEl)
     })
   </script>
-
-  <!--
-                that is a button with a tooltip on it
-            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-                 Tooltip on top
-             </button>
-                you add the below text in any class of button and you have tooltip
-                data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top"
-
-            -->
-
-
   </section>
   <!-- Footer-->
   <footer class="py-5 bg-dark">
@@ -183,6 +166,9 @@
       <p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="text/javascript" src="js/common.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       listenForChanges();
@@ -192,11 +178,15 @@
 
     function addData() { //add a new Document to Collection Applications
       let user = firebase.auth().currentUser;
+      let today = new Date();
       let firstname = document.getElementById("name").value; //document attribute firstname
       let lastname = document.getElementById("surname").value;
       let filename1 = document.getElementById("filename1").value;
       let filename2 = document.getElementById("filename2").value;
       let category = document.getElementById("category").value;
+      let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      let role ="simple";
+      let status="pending";
       if (firstname.length < 1) {
         alert('Please enter a name.');
         return;
@@ -225,7 +215,9 @@
           category: category,
           filename1: filename1,
           filename2: filename2,
-          date: "1900-01-01"
+          role: role,
+          status: status,
+          date: date
         })
         .then(function (docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -279,8 +271,7 @@
     }
   </script>
   <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="js/common.js"></script>
+
 
 </body>
 

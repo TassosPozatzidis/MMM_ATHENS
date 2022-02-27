@@ -30,15 +30,6 @@ exports.createAdminUser = functions.https.onRequest(async (request, response) =>
   }
 });
 
-exports.checkRole = functions.https.onRequest(async (request, response) => {
-  try {
-   const user= admin.auth().getUser("n9zVQnCrV5bUk2XPwKGHGGLSc6R2");
-      response.send((await user).customClaims);
-    } catch (error) {
-      throw new functions.https.HttpsError("failed to create a user");
-    }
-});
-
 exports.addSpecialRoleToUser = functions.https.onCall((data, context) => {
   const uid = data.uid;
   console.log(uid);
@@ -47,15 +38,31 @@ exports.addSpecialRoleToUser = functions.https.onCall((data, context) => {
   });
 });
 
-exports.updateCollectionApplications = functions.https.onCall((data, context) => {
-  // const docid = data.doc;
-  datab.collection("Applications").doc("zkSbGzOZDA3rJzvwGW8t").update({
-    role: "special",
-    status: "active",
-    })
-    .then(function() {
-    console.log("Document successfully updated!");
-    });
+exports.removeSpecialRoleToUser = functions.https.onCall((data, context) => {
+  const uid = data.uid;
+  console.log(uid);
+  admin.auth().setCustomUserClaims(uid, {
+    role: null,
+  });
+});
+
+exports.checkUser = functions.https.onCall((data, context) => {
+  if (context.auth.token.customClaims === true) { // 1
+    console.log("Is an admin");
+    return {
+      result: "Is an admin",
+    };
+  } else if (context.auth.token.role === "special") { // 1
+    console.log("Is special");
+    return {
+      result: "Is special user",
+    };
+  } else {
+    console.log("Is simple");
+    return {
+      result: "Is simple user",
+    };
+  }
 });
 
 exports.addAdminRole = functions.https.onCall((data, context) => {

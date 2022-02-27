@@ -35,8 +35,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                      <li class="nav-item"><a class="nav-link"  href="generic.html">Αρχική</a></li>
-                      <li class="nav-item"><a class="nav-link"  href="about.html">Σχετικά</a></li>
+                      <li class="nav-item"><a class="nav-link"  href="index.html">Αρχική</a></li>
+                      <li class="nav-item"><a class="nav-link  active" aria-current="page" href="tickets2.html">Εισιτήρια</a></li>
                       <li class="nav-item"><a class="nav-link"  href="contact.html">Επικοινωνία</a></li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="account-details" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -110,110 +110,7 @@
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
         </footer>
-          
-<script>
-
-
-    function downloadFile(FileN){
-
-        var storage = firebase.storage();
-        var pathReference = storage.ref('tickets/'+FileN);
-                firebase.storage().ref().child('tickets/'+FileN).getDownloadURL()
-.then((url) => {
-// This can be downloaded directly:
-var xhr = new XMLHttpRequest();
-xhr.responseType = 'blob';
-xhr.onload = (event) => {
-  var blob = xhr.response;
-};
-xhr.open('GET', url);
-xhr.send();
-window.open(url, '_blank').focus();
-window.location="ticketqrcode.html";
-// Or inserted into an <img> element
-
-})
-.catch((error) => {
-switch (error.code) {
-case 'storage/object-not-found':
-  // File doesn't exist
-  break;
-case 'storage/unauthorized':
-  // User doesn't have permission to access the object
-  break;
-case 'storage/canceled':
-  // User canceled the upload
-  break;
-
-// ...
-
-case 'storage/unknown':
-  // Unknown error occurred, inspect the server response
-  break;
-}
-// Handle any errors
-});
-}
-
-
-
-function initApp2() {
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    console.log(user);
-    
-    var displayName = user.displayName;
-    var email = user.email;
-    var emailVerified = user.emailVerified;
-    var photoURL = user.photoURL;
-    var uid = user.uid;
-    var phoneNumber = user.phoneNumber;
-    var providerData = user.providerData;
-    document.getElementById('account-details').innerHTML = email;
-    user.getIdToken().then(function(accessToken) {
-      document.getElementById('sign-in-status').textContent = 'Signed in';
-      document.getElementById('sign-in').textContent = 'Sign out';
-      document.getElementById('account-details').textContent = JSON.stringify({
-        email: email,
-        uid: uid
-      }, null, '  ');
-    });
-  } else {
-    // User is signed out.
-    console.log(user);
-    window.location="generic.html";
-
-  }
-}, function(error) {
-  console.log(error);
-});
-};
-
-window.addEventListener('load', function() {
-initApp2()
-});
-
-        function signOut(){
-                if (confirm("You are Going to Log Out")) {
-
-                        firebase.auth().signOut().then(() => {
-                          // Sign-out successful.
-                                        console.log(user);
-                                        document.getElementById('').textContent =email;
-            // User is signed out.
-                            }).catch((error) => {
-                                console.log(error);
-                                            // An error happened.
-                            });
-          
-                } else {
-                    txt = "You pressed Cancel!";
-            }
-      }
-
-
-</script>
+ 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
@@ -222,5 +119,6 @@ initApp2()
         <script src="/__/firebase/9.23.1/firebase-functions.js"></script>
         <script src="/__/firebase/9.23.1/init.js"></script>
         <script src="/js/scripts.css"></script>
+        <script type="text/javascript" src="js/tickets.js"></script>
     </body>
 </html>
