@@ -88,18 +88,16 @@
 
 
                 <div class="text-center w-responsive mx-auto mb-5">
-                    <button disabled class="btn btn-primary" id="quickstart-sign-in" style="display:none" name="signin" disabled>Sign In</button>
                     &nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-primary" id="quickstart-sign-up" name="signup">Sign Up</button>
+                    <button class="btn btn-primary" id="quickstart-sign-up"  name="signup">Εγγραφή</button>
                     &nbsp;&nbsp;&nbsp;
 
 
           
                     <!-- Container where we'll display the user details -->
                     <div class="quickstart-user-details-container">
-                        Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
-                        <div>Firebase auth <code>currentUser</code> object value:</div>
-                        <pre><code id="quickstart-account-details">null</code></pre>
+                        Η κατάσταση σας: <span id="quickstart-sign-in-status">Άγνωστη</span>
+                        <div>Χρήστης <code>Τρέχον Χρήστης</code></div>
                       </div>
 
                 </div>
@@ -203,19 +201,11 @@
                   var emailVerified = user.emailVerified;
                   var isAnonymous = user.isAnonymous;
                   var uid = user.uid;
-                  document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-                  document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-                  document.getElementById('quickstart-account-details').textContent = 'You are registered as : '+ email;
-                  if (!emailVerified) {
-
-                  }
+                  document.getElementById('quickstart-account-details').textContent = 'Έχετε συνδεθεί ως : '+ email;
                 } else {
                   // User is signed out.
-                  document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-                  document.getElementById('quickstart-sign-in').textContent = 'Sign in';
-                  document.getElementById('quickstart-account-details').textContent = 'null';
+                  document.getElementById('quickstart-sign-in-status').textContent = 'Αποσυνδεδεμένος';
                 }
-                document.getElementById('quickstart-sign-in').disabled = false;
               });
         
               document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);

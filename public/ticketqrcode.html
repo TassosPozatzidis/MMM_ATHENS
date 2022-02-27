@@ -25,9 +25,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
-        <script src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
-        <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
-        <script src="/__/firebase/init.js"></script>
 
     </head>
     <body>
@@ -42,11 +39,11 @@
                         <li class="nav-item"><a class="nav-link  active" aria-current="page" href="tickets2.html">Εισιτήρια</a></li>
                         <li class="nav-item"><a class="nav-link"  href="contact.html">Επικοινωνία</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="account-details" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               Ο Λογαριασμός μου
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="account-details">
-                              <li><a class="dropdown-item" href="formspecial.html">Ειδική Κατηγορία</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                              <li><a class="dropdown-item" onclick="redirectBasedOnUserRole()">Ειδική Κατηγορία</a></li>
                               <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
                             
                             </ul>
@@ -82,33 +79,8 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
     </script>
-    <script>
 
-    function initApp2() {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        console.log(user);
-        
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var uid = user.uid;
+<script type="text/javascript" src="js/common.js"></script>
 
-      } else {
-        // User is signed out.
-        console.log(user);
-        window.location="generic.html";
-    
-      }
-    }, function(error) {
-      console.log(error);
-    });
-    };
-    
-    window.addEventListener('load', function() {
-    initApp2()
-    });
-    
-    </script>
 </body>
 </html>

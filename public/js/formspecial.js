@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+    listenForChanges();
     listenForFiles();
-    listenUser();
-});
+  });
 
-function checkUserRole() {
+  function checkUserRole() {
     console.log(userId,docid);
     let data = {
         uid: userId
@@ -84,7 +84,7 @@ function redirectBasedOnUserRole() {
                 // Confirm the user is an Admin.
                 if (!!idTokenResult.claims.admin) {
                     // Show admin UI.
-                    location.href = "AdminPanel.html";
+                    console.log("user is admin");
                 } else if (idTokenResult.claims.role === "special") {
                     // Show regular user UI.
                     location.href = "reducedtickets.html";
@@ -112,9 +112,8 @@ function initApp2() {
             var photoURL = user.photoURL;
             var uid = user.uid;
             document.getElementById('navbarDropdownMenuLink').innerHTML = email;
-            document.getElementById('displayEmail').innerHTML = email;
+            
             showAdminUIElements(user);
-
         } else {
             // User is signed out.
             window.location = "signin.html";
@@ -168,24 +167,97 @@ function signOut() {
     }
 }
 
-function uploadFile() {
-    let file = document.getElementById("filename").files[0];
-    console.log("Filename: " + file.name + " size:" + file.size + " type:" + file.type);
-    let metadata = {
-        contentType: file.type
-    };
-    let uploadTask = firebase.storage().ref().child('documents/' + file.name).put(file, metadata);
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+
+  function addData() { //add a new Document to Collection Applications
+    let user = firebase.auth().currentUser;
+    let today = new Date();
+    let firstname = document.getElementById("name").value; //document attribute firstname
+    let lastname = document.getElementById("surname").value;
+    let filename1 = document.getElementById("filename1").value;
+    let filename2 = document.getElementById("filename2").value;
+    let category = document.getElementById("category").value;
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let role ="simple";
+    let status="pending";
+    if (firstname.length < 1) {
+      alert('Please enter a name.');
+      return;
+    }
+    if (lastname.length < 1) {
+      alert('Please enter a surname.');
+      return;
+    }
+    if (document.getElementById("filename1").files.length == 0) {
+      alert('Please insert a file (1).');
+      return;
+    }
+    if (document.getElementById("filename2").files.length == 0) {
+      alert('Please insert a file (2).');
+      return;
+    }
+    if (category.length < 1) {
+      alert('Please select a category.');
+      return;
+    }
+    firebase.firestore().collection("Applications")
+      .add({
+        userID: user.uid,
+        firstname: firstname,
+        lastname: lastname,
+        category: category,
+        filename1: filename1,
+        filename2: filename2,
+        role: role,
+        status: status,
+        date: date
+      })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+    setTimeout(function () {
+      window.location.href = "SuccessApplication.html"
+    }, 3000); //wait 3000 until the function complete-then redirect to SuccessApplication page
+  }
+
+
+
+  function uploadFile() {
+
+    let user = firebase.auth().currentUser;
+    let file1 = document.getElementById("filename1").files[0];
+    let file2 = document.getElementById("filename2").files[0];
+    const file = [file1, file2];
+    /*   if (file1.length < 1) {
+                 alert('Please insert a file.');
+                 return;
+               }
+               if (file2.length < 1) {
+                 alert('Please insert a file.');
+                 return;
+               }*/
+    //let file = document.getElementById(filename2).files[1];
+    for (var i = 0, row; row = file[i]; i++) {
+      console.log("Filename: " + file[i].name + " size:" + file[i].size + " type:" + file[i].type);
+      let metadata = {
+        contentType: file[i].type
+      };
+      let uploadTask = firebase.storage().ref().child('documents/' + user.uid + '/' + file[i].name).put(file[i],
+        metadata);
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
         function (snapshot) {
-            let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            document.getElementById("files").innerHTML = 'Upload is ' + progress + '% done';
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          document.getElementById("files").innerHTML = 'Upload is ' + progress + '% done';
         },
         function (error) {
-            console.log(error)
+          console.log(error)
         },
         function () {
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
-            });
+          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log('File available at', downloadURL);
+          });
         });
-}
+    }
+  }

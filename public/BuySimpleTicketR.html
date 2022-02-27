@@ -21,6 +21,7 @@
     <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
+        <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -42,7 +43,7 @@
                           Ο Λογαριασμός μου
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="account-details">
-                          <li><a class="dropdown-item" href="formspecial.html">Ειδική Κατηγορία</a></li>
+                          <li><a class="dropdown-item" onclick="redirectBasedOnUserRole()">Ειδική Κατηγορία</a></li>
                           <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
                         
                         </ul>
@@ -58,7 +59,7 @@
                     <div class="m-4 m-lg-5">
                         <h1 class="display-5 fw-bold">Αγορά εισιτηρίου</h1>
                         <p class="fs-4">Συμπληρώστε τα στοιχεία της κάρτας σας και αγοράστε το εισιτήριο που επιλέξατε</p>
-                        <p class="fs-4">Ημερήσιο Εισιτήριο : 4,10 €</p></br></br>
+                        <p class="fs-4">Ενιαίο εισιτήριο : 0,50 €</p></br></br>
                         <h2 class="fs-4 fw-bold">Στοιχεία Κάρτας</h2></br>
                       <div class="row gx-lg-5">
                         <div class="col-lg-6 col-xxl-4 mb-5">
@@ -88,7 +89,7 @@
                                   </div>
                               </div>
                               <div class="col-12">
-                              </br><a class="btn btn-primary btn-lg" onclick="downloadFile('OneDay.pdf')" >Αγορά</a>
+                              </br><a class="btn btn-primary btn-lg" onclick="downloadFile('Simple.pdf')" >Αγορά</a>
                               </div>
                           </div>
                         </div>
@@ -109,6 +110,7 @@
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
         </footer>
+ 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

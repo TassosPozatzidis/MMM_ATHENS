@@ -40,7 +40,6 @@ function downloadFile(FileN) {
       });
   }
 
-
   function initApp2() {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -56,12 +55,6 @@ function downloadFile(FileN) {
         var providerData = user.providerData;
         document.getElementById('account-details').innerHTML = email;
         user.getIdToken().then(function (accessToken) {
-          document.getElementById('sign-in-status').textContent = 'Signed in';
-          document.getElementById('sign-in').textContent = 'Sign out';
-          document.getElementById('account-details').textContent = JSON.stringify({
-            email: email,
-            uid: uid
-          }, null, '  ');
         });
       } else {
         // User is signed out.
@@ -77,6 +70,31 @@ function downloadFile(FileN) {
   window.addEventListener('load', function () {
     initApp2()
   });
+
+  
+  function redirectBasedOnUserRole() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        user.getIdToken(true);
+        user.getIdTokenResult()
+            .then((idTokenResult) => {
+                // Confirm the user is an Admin.
+                if (!!idTokenResult.claims.admin) {
+                    // Show admin UI.
+                    console.log("user is admin");
+                } else if (idTokenResult.claims.role === "special") {
+                    // Show regular user UI.
+                    location.href = "reducedtickets.html";
+                    console.log(`user is :${idTokenResult.claims.role}`);
+                } else {
+                    location.href = "formspecial.html";
+                    console.log(`user is :${idTokenResult.claims.role}`);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    });
+  };
 
   function signOut() {
     if (confirm("You are Going to Log Out")) {
