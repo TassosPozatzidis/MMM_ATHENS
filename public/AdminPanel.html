@@ -9,6 +9,8 @@
     <title>ATH.ENA Ticket</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-functions.js"></script>
+
+
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -33,10 +35,9 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="generic.html">Αρχική</a></li>
+                    <li class="nav-item"><a class="nav-link  active" href="AdminPanel.html">Προσθήκη Δικαιωμάτων</a>  
                     <li class="nav-item"><a class="nav-link" href="AdminPanelRemoveUser.html">Αφαίρεση Δικαιωμάτων</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" onclick=signOut()>Έξοδος</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick=signOut()>Έξοδος</a></li>
                 </ul>
             </div>
         </div>
@@ -156,6 +157,7 @@
             var storage = firebase.storage();
             firebase.storage().ref().child('documents/' + FileN).listAll().getDownloadURL()
                 .then((url) => {
+                    console.log(url);
                     // This can be downloaded directly:
                     var xhr = new XMLHttpRequest();
                     xhr.responseType = 'blob';
@@ -269,11 +271,7 @@
             }
         }
     </script>
-      <script src="/__/firebase/9.23.1/firebase-app.js"></script>
-      <script src="/__/firebase/9.23.1/firebase-auth.js"></script>
-      <script src="/__/firebase/9.23.1/firebase-functions.js"></script>
-      <script src="/__/firebase/9.23.1/init.js"></script>
-      <script src="/js/scripts.css"></script>
+
 </body>
 
 </html>
