@@ -39,8 +39,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="index.html">Αρχική</a></li>
-                    <li class="nav-item"><a class="nav-link  active" aria-current="page"
-                            href="tickets2.html">Εισιτήρια</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Εισιτήρια
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                            <li><a class="dropdown-item" href="tickets2.html">Απλά Εισιτήρια</a></li>
+                            <li><a class="dropdown-item" href="reducedtickets.html">Ειδικά Εισιτήρια</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -61,7 +69,7 @@
     <header class="py-5">
         <div class="container px-lg-5">
             <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-                <h1 class="display-5 fw-bold">Ψηφιακό εισιτήριο</h1>
+                <h1 class="display-5 fw-bold">Ψηφιακό Εισιτήριο Ειδικής Κατηγορίας</h1>
                 <p class="fs-4">Αγοράστε μειωμένο εισιτήριο της επιλογή σας και αποθηκεύστε το στην συσκευή σας. Εύκολη
                     χρήση του εισιτηρίου ανά πάσα στιγμή.</p>
                 <!--<a class="btn btn-primary btn-lg" href="#!">Call to action</a>-->
@@ -385,6 +393,7 @@
             // Listening for auth state changes.
 
             firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {    
                 user.getIdToken(true);
                 user.getIdTokenResult()
                     .then((idTokenResult) => {
@@ -396,14 +405,19 @@
                             var uid = user.uid;
                             document.getElementById('navbarDropdownMenuLink').innerHTML = email;
 
-                        } else if(!!idTokenResult.claims.admin){
+                        } else if (!!idTokenResult.claims.admin) {
                             console.log(user);
                             window.location = "AdminPanel.html";
-                        }else{
+                        } else {
                             window.location = "index.html";
                         }
                     });
+                } else {
+            // User is signed out.
+            window.location = "signin.html";
+        }
             });
+            
         }
         window.addEventListener('load', function () {
             initApp();

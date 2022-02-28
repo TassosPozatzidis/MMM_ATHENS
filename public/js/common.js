@@ -151,7 +151,7 @@ function showAdminUIElements() {
 
 
 function signOut() {
-    if (confirm("You are Going to Log Out")) {
+    if (confirm("You Αre Going Τo Log Out")) {
 
         firebase.auth().signOut().then(() => {
             // Sign-out successful.

@@ -33,8 +33,17 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Αρχική</a></li>
-                        <li class="nav-item"><a class="nav-link" href="tickets2.html">Εισιτήρια</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Αρχική</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Εισιτήρια
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                                <li><a class="dropdown-item" href="tickets2.html">Απλά Εισιτήρια</a></li>
+                                <li><a class="dropdown-item" onclick="redirectBasedOnUserRole()">Ειδικά Εισιτήρια</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -42,11 +51,12 @@
                                 Ο Λογαριασμός μου
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" onclick="redirectBasedOnUserRole()">Ειδική Κατηγορία</a></li>
+                                <li><a class="dropdown-item" href="#">Επεξεργασία Προφίλ</a></li>
                                 <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
     
                             </ul>
                         </li>
+    
                     </ul>
                 </div>
             </div>

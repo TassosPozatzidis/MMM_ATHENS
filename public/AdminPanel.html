@@ -7,9 +7,19 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>ATH.ENA Ticket</title>
+    <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-functions.js"></script>
-
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="basicwebsite/public/assets/favicon.ico" />
@@ -35,7 +45,7 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link  active" href="AdminPanel.html">Προσθήκη Δικαιωμάτων</a>  
+                    <li class="nav-item"><a class="nav-link  active" href="AdminPanel.html">Προσθήκη Δικαιωμάτων</a>
                     <li class="nav-item"><a class="nav-link" href="AdminPanelRemoveUser.html">Αφαίρεση Δικαιωμάτων</a>
                     <li class="nav-item"><a class="nav-link" href="#" onclick=signOut()>Έξοδος</a></li>
                 </ul>
@@ -51,7 +61,7 @@
                     <p class="fs-4">Επιλέξτε τον χρήστη, κατεβάστε τα δικαιολογητικά και προσθέστε ή αφαιρέστε
                         δικαιώματα</p>
                     </br>
-                    <h5 class="fs-4">Προσθήκη Δικαιωμάτων</h5>
+                    <h5 class="fs-4">Προσθήκη Δικαιωμάτων</h5><br><br>
                     <table class="table table-dark table-striped">
                         <thead>
                             <tr>
@@ -59,6 +69,7 @@
                                 <th>Επώνυμο</th>
                                 <th>Κατάσταση</th>
                                 <th>Ρόλος</th>
+                                <th>Ημ/νια Λήξης</th>
                                 <th>Λήψη Εγγράφων</th>
                                 <th>Προσθήκη Δικαιωμάτων</th>
                             </tr>
@@ -131,15 +142,19 @@
                     querySnapshot.forEach((doc) => {
                         // doc.data() is never undefined for query doc snapshots
                         let data = doc.data();
+                        let date = document.getElementById('date');
+                        console.log(date);
                         let row = `<tr>
                             <td>${data.lastname}</td>
                             <td>${data.firstname}</td>
                             <td>${data.status}</td>
                             <td>${data.role}</td>
+                            <td><input  type="date" id="date"></input></td>
                             <td><button type="button" class="btn btn-primary btn-sm" onclick="downloadFile('${data.userID}')">Έγγραφα</button></td>
                             <td><button type="button" class="btn btn-primary btn-sm" onclick="giveCred('${data.userID}','${doc.id}')">Ενημέρωση</button></td>
                         </tr>`;
                         let table = document.getElementById('myTable');
+
                         table.innerHTML += row
                     });
                 })
@@ -153,47 +168,32 @@
         });
 
         function downloadFile(FileN) {
-            
-            var storage = firebase.storage();
-            firebase.storage().ref().child('documents/' + FileN).listAll().getDownloadURL()
-                .then((url) => {
-                    console.log(url);
-                    // This can be downloaded directly:
-                    var xhr = new XMLHttpRequest();
-                    xhr.responseType = 'blob';
-                    xhr.onload = (event) => {
-                        var blob = xhr.response;
-                    };
-                    xhr.open('GET', url);
-                    xhr.send();
-                    window.open(url, '_blank').focus();
-                    //window.location = "ticketqrcode.html";
-
-                    // Or inserted into an <img> element
-
+            var img_index = 1;
+            var storageRef = firebase.storage().ref();
+            var listRef = storageRef.child('documents/' + FileN);
+            console.log(listRef);
+            listRef.listAll().then((result) => {
+                console.log(result);
+                result.items.forEach(async (doc)=>{
+                    console.log(doc);
+                    doc.getDownloadURL().then((url) =>{
+                        var xhr = new XMLHttpRequest();
+                        xhr.responseType = 'blob';
+                        xhr.onload = (event) => {
+                            var blob = xhr.response;
+                        };
+                        xhr.open('GET', url);
+                        xhr.send();
+                        window.open(url, '_blank').focus();
+                        //window.location = "ticketqrcode.html";
+                        console.log(url);
+                        img_index++;
+                    });
                 })
-                .catch((error) => {
-                    switch (error.code) {
-                        case 'storage/object-not-found':
-                            // File doesn't exist
-                            break;
-                        case 'storage/unauthorized':
-                            // User doesn't have permission to access the object
-                            break;
-                        case 'storage/canceled':
-                            // User canceled the upload
-                            break;
-
-                            // ...
-
-                        case 'storage/unknown':
-                            // Unknown error occurred, inspect the server response
-                            break;
-                    }
-                    // Handle any errors
-                });
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
-
 
         function initApp() {
             // Listening for auth state changes.
@@ -225,7 +225,8 @@
         }
 
         function giveCred(userId, docid) {
-            console.log(userId, docid);
+            let date=document.getElementById("date").value;
+            console.log(userId, docid, date);
             let data = {
                 uid: userId
             }
@@ -235,6 +236,7 @@
                 .update({
                     role: "special",
                     status: "active",
+                    dateto: date,
                 })
             initApp();
         }

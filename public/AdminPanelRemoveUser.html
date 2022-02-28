@@ -49,14 +49,15 @@
                     <p class="fs-4">Επιλέξτε τον χρήστη, κατεβάστε τα δικαιολογητικά και προσθέστε ή αφαιρέστε
                         δικαιώματα.</p>
                     </br>
-                    <h5 class="fs-4">Αφαίρεση Δικαιωμάτων</h5>
+                    <h5 class="fs-4">Αφαίρεση Δικαιωμάτων</h5><br><br>
                     <table class="table table-dark table-striped">
                         <thead>
                             <tr>
-                                <th>firstname</th>
-                                <th>lastname</th>
-                                <th>status</th>
-                                <th>role</th>
+                                <th>Όνομα</th>
+                                <th>Επώνυμο</th>
+                                <th>Κατάσταση</th>
+                                <th>Ρόλος</th>
+                                <th>Ημ/νια Λήξης</th>
                                 <th>Αφαίρεση Δικαιωμάτων</th>
                             </tr>
                         </thead>
@@ -131,6 +132,7 @@
                             <td>${data.firstname}</td>
                             <td>${data.status}</td>
                             <td>${data.role}</td>
+                            <td>${data.dateto}</td>
                             <td><button type="button" class="btn btn-primary btn-sm" onclick="removeCred('${data.userID}','${doc.id}')">Ενημέρωση</button></td>
                         </tr>`;
                         table.innerHTML += row
