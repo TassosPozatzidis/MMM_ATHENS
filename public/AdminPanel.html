@@ -143,18 +143,17 @@
                         // doc.data() is never undefined for query doc snapshots
                         let data = doc.data();
                         let date = document.getElementById('date');
-                        console.log(date);
-                        let row = `<tr>
+                        console.log(date);          //create rows from collection applications
+                        let row = `<tr>             
                             <td>${data.lastname}</td>
                             <td>${data.firstname}</td>
                             <td>${data.status}</td>
                             <td>${data.role}</td>
-                            <td><input  type="date" id="date"></input></td>
+                            <td><input  type="date" id="${doc.id}"></input></td>
                             <td><button type="button" class="btn btn-primary btn-sm" onclick="downloadFile('${data.userID}')">Έγγραφα</button></td>
                             <td><button type="button" class="btn btn-primary btn-sm" onclick="giveCred('${data.userID}','${doc.id}')">Ενημέρωση</button></td>
                         </tr>`;
                         let table = document.getElementById('myTable');
-
                         table.innerHTML += row
                     });
                 })
@@ -224,15 +223,15 @@
             });
         }
 
-        function giveCred(userId, docid) {
-            let date=document.getElementById("date").value;
+        function giveCred(userId, docid) { //change credentials of a user
+            let date=document.getElementById(docid).value;  //date element
             console.log(userId, docid, date);
             let data = {
                 uid: userId
             }
-            addSpecialRoleToUser = functions.httpsCallable('addSpecialRoleToUser');
+            addSpecialRoleToUser = functions.httpsCallable('addSpecialRoleToUser');         //call function from functions
             addSpecialRoleToUser(data);
-            firebase.firestore().collection("Applications").doc(docid)
+            firebase.firestore().collection("Applications").doc(docid)                  //update doc 
                 .update({
                     role: "special",
                     status: "active",
