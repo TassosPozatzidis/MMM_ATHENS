@@ -53,7 +53,7 @@ function downloadFile(FileN) {
         var uid = user.uid;
         var phoneNumber = user.phoneNumber;
         var providerData = user.providerData;
-        document.getElementById('account-details').innerHTML = email;
+        document.getElementById('navbarDropdownMenuLink').innerHTML = email;
         user.getIdToken().then(function (accessToken) {
         });
       } else {

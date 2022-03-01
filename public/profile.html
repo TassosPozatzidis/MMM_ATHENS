@@ -62,7 +62,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
                             <li><a class="dropdown-item" href="tickets2.html">Απλά Εισιτήρια</a></li>
-                            <li><a class="dropdown-item" href="formspecial.html">Ειδικά Εισιτήρια</a></li>
+                            <li><a class="dropdown-item" onclick="redirectBasedOnUserRole()">Ειδικά Εισιτήρια</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
@@ -88,39 +88,47 @@
                 <div class="m-4 m-lg-5">
                     <h3 class="card-title text-center">Ο Λογαριασμός μου</h3>
                 </div>
-            <div class="bg-light text-center">
-                <div class="form-group">
-                    <h5 class="card-title text-center">Όνομα:</h5> <span class="card-text text-center" id="name"></span>
-                   <br><br>
-                </div>
-                <div class="form-group">
-                    <h5 class="card-title text-center">Επώνυμο:</h5> <span class="card-text text-center" id="surname"></span><br><br>
-                </div>
-                <div class="form-group">
-                    <h5 class="card-title text-center">Email:</h5> <span class="card-text text-center" id="email"></span><br><br>
-                </div>
-                <div class="form-group">
-                    <h5 class="card-title text-center">Κατάσταση:</h5> <span class="card-text text-center" id="status"></span><br><br>
-                </div>
-                <div class="form-group">
-                    <h5 class="card-title text-center">Ρόλος:</h5> <span class="card-text text-center" id="role"></span><br><br>
-                </div>
-                <div class="form-group">
-                    <h5 class="card-title text-center">Ημ/νια Λήξης:</h5> <span class="card-text text-center" id="date"></span><br><br>
-                </div>
+                <div class="bg-light text-center">
+                    <div class="form-group">
+                        <h5 class="card-title text-center">Όνομα:</h5> <span class="card-text text-center"
+                            id="name"></span>
+                        <br><br>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="card-title text-center">Επώνυμο:</h5> <span class="card-text text-center"
+                            id="surname"></span><br><br>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="card-title text-center">Email:</h5> <span class="card-text text-center"
+                            id="email"></span><br><br>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="card-title text-center">Κατάσταση:</h5> <span class="card-text text-center"
+                            id="status"></span><br><br>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="card-title text-center">Ρόλος:</h5> <span class="card-text text-center"
+                            id="role"></span><br><br>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="card-title text-center">Ημ/νια Λήξης:</h5> <span class="card-text text-center"
+                            id="date"></span><br><br>
+                    </div>
 
+                </div>
             </div>
         </div>
-    </div>
     </header>
 
 
     </section>
     <!-- Footer-->
 
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
-        </footer>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -152,46 +160,70 @@
         });
 
         function getSpecialProfileDetails(user) {
-            let userid=user.uid;
+            let userid = user.uid;
             user.getIdTokenResult()
-        .then((idTokenResult) => {
-            if (idTokenResult.claims.role==="special"){
-            firebase.firestore().collection("Applications").where("userID", "==", userid)
-                .get()
-                .then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                    if (doc.exists) {
-                        // doc.data() is never undefined for query doc snapshots
-                        let data = doc.data();
-                        console.log(data);
-                        
-                        document.getElementById('name').innerHTML = data.lastname;
-                        document.getElementById('surname').innerHTML = data.firstname;
-                        document.getElementById('email').innerHTML = user.email;
-                        document.getElementById('status').innerHTML = data.status;
-                        document.getElementById('role').innerHTML = data.role;
-                        document.getElementById('date').innerHTML = data.dateto;
+                .then((idTokenResult) => {
+                    if (idTokenResult.claims.role === "special") {
+                        firebase.firestore().collection("Applications").where("userID", "==", userid).orderBy(
+                                "date", "desc").limit(1)
+                            .get()
+                            .then((querySnapshot) => {
+                                querySnapshot.forEach((doc) => {
+                                    if (doc.exists) {
+                                        // doc.data() is never undefined for query doc snapshots
+                                        let data = doc.data();
+                                        console.log(data);
+
+                                        document.getElementById('name').innerHTML = data.firstname;
+                                        document.getElementById('surname').innerHTML = data.lastname;
+                                        document.getElementById('email').innerHTML = user.email;
+                                        document.getElementById('status').innerHTML = data.status;
+                                        document.getElementById('role').innerHTML = data.role;
+                                        document.getElementById('date').innerHTML = data.dateto;
+                                    } else {
+                                        console.log("No such document!");
+                                    }
+                                });
+                            })
+                            .catch((error) => {
+                                console.log("Error getting documents: ", error);
+                            });
+                    } else if (!!idTokenResult.claims.admin) {
+                        window.location = "signin.html";
                     } else {
-                        console.log("No such document!");
-                    }
-                });
-                })
-                .catch((error) => {
-                    console.log("Error getting documents: ", error);
-                });
-            }else if(!!idTokenResult.claims.admin){
-                window.location = "signin.html";
-            }
-            else{
-                document.getElementById('name').innerHTML = "n/a";
+                        document.getElementById('name').innerHTML = "n/a";
                         document.getElementById('surname').innerHTML = "n/a";
                         document.getElementById('email').innerHTML = user.email;
                         document.getElementById('status').innerHTML = "n/a";
                         document.getElementById('role').innerHTML = "simple";
                         document.getElementById('date').innerHTML = "n/a";
-            }
-            });
+                    }
+                });
         }
+
+        function redirectBasedOnUserRole() {
+            firebase.auth().onAuthStateChanged(function (user) {
+                user.getIdToken(true);
+                user.getIdTokenResult()
+                    .then((idTokenResult) => {
+                        // Confirm the user is an Admin.
+                        if (!!idTokenResult.claims.admin) {
+                            // Show admin UI.
+                            console.log("user is admin");
+                        } else if (idTokenResult.claims.role === "special") {
+                            // Show regular user UI.
+                            location.href = "reducedtickets.html";
+                            console.log(`user is :${idTokenResult.claims.role}`);
+                        } else {
+                            location.href = "formspecial.html";
+                            console.log(`user is :${idTokenResult.claims.role}`);
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+        };
 
         function signOut() {
             if (confirm("You are Going to Log Out")) {

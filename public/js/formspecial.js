@@ -123,22 +123,19 @@ function initApp2() {//initialise app
     });
 };
 
-function showAdminUIElements() {
+function showAdminUIElements() {        //display user roles with custom claims
     firebase.auth().onAuthStateChanged(function (user) {
     user.getIdToken(true);
     user.getIdTokenResult()
         .then((idTokenResult) => {
             // Confirm the user is an Admin.
             if (!!idTokenResult.claims.admin) {
-                // Show admin UI.
-                
+                // Show admin    
                 console.log("user is admin");
-                
-
-            }else if (idTokenResult.claims.role==="special"){
+            }else if (idTokenResult.claims.role==="special"){//if user is special
                 // Show regular user UI.
                 console.log(`user is :${idTokenResult.claims.role}`);
-            }else{
+            }else{                                          //if user is simple
                 console.log(`user is :${idTokenResult.claims.role}`);
             }
         })
@@ -172,13 +169,13 @@ function signOut() {
     let user = firebase.auth().currentUser;
     let today = new Date();
     let firstname = document.getElementById("name").value; //document attribute firstname
-    let lastname = document.getElementById("surname").value;
-    let filename1 = document.getElementById("filename1").value;
-    let filename2 = document.getElementById("filename2").value;
+    let lastname = document.getElementById("surname").value;//document attribute surname
+    let filename1 = document.getElementById("filename1").value;//document attribute filename1
+    let filename2 = document.getElementById("filename2").value;//document attribute filename2
     let category = document.getElementById("category").value;
-    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    let role ="simple";
-    let status="pending";
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();//get current date
+    let role ="simple"; //user is simple right now
+    let status="pending";//application is pending
     if (firstname.length < 1) {
       alert('Please enter a name.');
       return;
@@ -199,7 +196,7 @@ function signOut() {
       alert('Please select a category.');
       return;
     }
-    firebase.firestore().collection("Applications")
+    firebase.firestore().collection("Applications")//add to application collection a new document with values from html form
       .add({
         userID: user.uid,
         firstname: firstname,
@@ -224,21 +221,12 @@ function signOut() {
 
 
 
-  function uploadFile() {
+  function uploadFile() {     //upload a file to firebase storage
 
     let user = firebase.auth().currentUser;
-    let file1 = document.getElementById("filename1").files[0];
-    let file2 = document.getElementById("filename2").files[0];
+    let file1 = document.getElementById("filename1").files[0];  //first file
+    let file2 = document.getElementById("filename2").files[0];  //second file
     const file = [file1, file2];
-    /*   if (file1.length < 1) {
-                 alert('Please insert a file.');
-                 return;
-               }
-               if (file2.length < 1) {
-                 alert('Please insert a file.');
-                 return;
-               }*/
-    //let file = document.getElementById(filename2).files[1];
     for (var i = 0, row; row = file[i]; i++) {
       console.log("Filename: " + file[i].name + " size:" + file[i].size + " type:" + file[i].type);
       let metadata = {
@@ -248,8 +236,8 @@ function signOut() {
         metadata);
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
         function (snapshot) {
-          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          document.getElementById("files").innerHTML = 'Upload is ' + progress + '% done';
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;  
+          document.getElementById("files").innerHTML = 'Upload is ' + progress + '% done';  //display upload progress
         },
         function (error) {
           console.log(error)
