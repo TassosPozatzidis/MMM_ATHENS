@@ -100,19 +100,15 @@ function redirectBasedOnUserRole() {
     });
 }
 
-function initApp2() {
+function initApp2() {                                                               //init app
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
-            console.log(user);
-
             var displayName = user.displayName;
             var email = user.email;
             var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
             var uid = user.uid;
-            document.getElementById('navbarDropdownMenuLink').innerHTML = email;
-            document.getElementById('displayEmail').innerHTML = email;
+            document.getElementById('navbarDropdownMenuLink').innerHTML = email;            //display email in dropdownlist
             showAdminUIElements(user);
 
         } else {
@@ -124,7 +120,7 @@ function initApp2() {
     });
 };
 
-function showAdminUIElements() {
+function showAdminUIElements(user) {
     firebase.auth().onAuthStateChanged(function (user) {
     user.getIdToken(true);
     user.getIdTokenResult()
@@ -134,6 +130,7 @@ function showAdminUIElements() {
                 // Show admin UI.
                 
                 console.log("user is admin");
+                window.location = "signin.html";
                 
 
             }else if (idTokenResult.claims.role==="special"){

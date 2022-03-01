@@ -148,8 +148,7 @@
       }
       // Create user with email and pass.
       firebase.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
-        console.log(user);
-        message('You are registered');
+        alert('You are registered');
         sendEmailVerification();
       }).catch(function (error) {
         // Handle Errors here.

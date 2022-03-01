@@ -100,9 +100,9 @@ function redirectBasedOnUserRole() {
     });
 }
 
-function initApp2() {
+function initApp2() {//initialise app 
     firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
+        if (user) {//if authenticated user
             // User is signed in.
             console.log(user);
 
@@ -112,7 +112,7 @@ function initApp2() {
             var photoURL = user.photoURL;
             var uid = user.uid;
             document.getElementById('navbarDropdownMenuLink').innerHTML = email;
-            
+            document.getElementById('navbarDropdownMenuLink').innerHTML = email;
             showAdminUIElements(user);
         } else {
             // User is signed out.

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Φόρμα ειδικής κατηγορίας</title>
+
+    <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.2.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.2.2/firebase-performance.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="styles.css" rel="stylesheet" />
+
+    <!--Import poppers before js as need it-->
+    <script src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
+    <script src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <!-- Favicon-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    <!--Import bootstrap js so i can make popovers-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-lg-5">
+            <a class="navbar-brand" href="generic.html">ΑΤΗ.ΕΝΑ ticket</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Αρχική</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Εισιτήρια
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                            <li><a class="dropdown-item" href="tickets2.html">Απλά Εισιτήρια</a></li>
+                            <li><a class="dropdown-item" href="formspecial.html">Ειδικά Εισιτήρια</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Επικοινωνία</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Ο Λογαριασμός μου
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="profile.html">To Προφίλ μου</a></li>
+                            <li><a class="dropdown-item" onclick="signOut()">Αποσύνδεση</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-5">
+        <div class="container px-lg-5">
+            <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                <div class="m-4 m-lg-5">
+                    <h3 class="card-title text-center">Ο Λογαριασμός μου</h3>
+                </div>
+            <div class="bg-light text-center">
+                <div class="form-group">
+                    <h5 class="card-title text-center">Όνομα:</h5> <span class="card-text text-center" id="name"></span>
+                   <br><br>
+                </div>
+                <div class="form-group">
+                    <h5 class="card-title text-center">Επώνυμο:</h5> <span class="card-text text-center" id="surname"></span><br><br>
+                </div>
+                <div class="form-group">
+                    <h5 class="card-title text-center">Email:</h5> <span class="card-text text-center" id="email"></span><br><br>
+                </div>
+                <div class="form-group">
+                    <h5 class="card-title text-center">Κατάσταση:</h5> <span class="card-text text-center" id="status"></span><br><br>
+                </div>
+                <div class="form-group">
+                    <h5 class="card-title text-center">Ρόλος:</h5> <span class="card-text text-center" id="role"></span><br><br>
+                </div>
+                <div class="form-group">
+                    <h5 class="card-title text-center">Ημ/νια Λήξης:</h5> <span class="card-text text-center" id="date"></span><br><br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </header>
+
+
+    </section>
+    <!-- Footer-->
+
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; GMIT@Unipi 2021</p></div>
+        </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap core JS-->
+    <script>
+        function initApp2() { //initialise app 
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) { //if authenticated user
+                    // User is signed in.
+                    console.log(user);
+
+                    var displayName = user.displayName;
+                    var email = user.email;
+                    var emailVerified = user.emailVerified;
+                    var photoURL = user.photoURL;
+                    var uid = user.uid;
+                    document.getElementById('navbarDropdownMenuLink').innerHTML = email;
+                    getSpecialProfileDetails(user);
+                } else {
+                    // User is signed out.
+                    window.location = "signin.html";
+                }
+            }, function (error) {
+                console.error(error);
+            });
+        };
+        window.addEventListener('load', function () {
+            initApp2();
+        });
+
+        function getSpecialProfileDetails(user) {
+            let userid=user.uid;
+            user.getIdTokenResult()
+        .then((idTokenResult) => {
+            if (idTokenResult.claims.role==="special"){
+            firebase.firestore().collection("Applications").where("userID", "==", userid)
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                    if (doc.exists) {
+                        // doc.data() is never undefined for query doc snapshots
+                        let data = doc.data();
+                        console.log(data);
+                        
+                        document.getElementById('name').innerHTML = data.lastname;
+                        document.getElementById('surname').innerHTML = data.firstname;
+                        document.getElementById('email').innerHTML = user.email;
+                        document.getElementById('status').innerHTML = data.status;
+                        document.getElementById('role').innerHTML = data.role;
+                        document.getElementById('date').innerHTML = data.dateto;
+                    } else {
+                        console.log("No such document!");
+                    }
+                });
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+            }else if(!!idTokenResult.claims.admin){
+                window.location = "signin.html";
+            }
+            else{
+                document.getElementById('name').innerHTML = "n/a";
+                        document.getElementById('surname').innerHTML = "n/a";
+                        document.getElementById('email').innerHTML = user.email;
+                        document.getElementById('status').innerHTML = "n/a";
+                        document.getElementById('role').innerHTML = "simple";
+                        document.getElementById('date').innerHTML = "n/a";
+            }
+            });
+        }
+
+        function signOut() {
+            if (confirm("You are Going to Log Out")) {
+
+                firebase.auth().signOut().then(() => {
+                    // Sign-out successful.
+                    console.log(user);
+                    document.getElementById('').textContent = email;
+                    // User is signed out.
+                }).catch((error) => {
+                    console.log(error);
+                    // An error happened.
+                });
+
+            } else {
+                txt = "You pressed Cancel!";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
